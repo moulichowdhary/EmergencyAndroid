@@ -73,7 +73,7 @@ public class SendMail extends AsyncTask<Void,Void,Void>{
                 new javax.mail.Authenticator() {
                     //Authenticating the password
                     protected PasswordAuthentication getPasswordAuthentication() {
-                        return new PasswordAuthentication("moulichowdhary@gmail.com", "mouli159753");
+                        return new PasswordAuthentication("northwestemergency@gmail.com", "Northwest@1");
                     }
                 });
 

@@ -114,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     private String getCompleteAddressString(double LATITUDE, double LONGITUDE) {
-        String strAdd = "huhuhuhuhu";
+        String strAdd = "";
 
         Geocoder geocoder = new Geocoder(this, Locale.getDefault());
         try {
