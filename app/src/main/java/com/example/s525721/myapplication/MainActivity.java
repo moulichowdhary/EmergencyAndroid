@@ -54,9 +54,7 @@ public class MainActivity extends AppCompatActivity {
                 longitude = location.getLongitude();
                 String address = getCompleteAddressString(latitude, longitude);
                 kk.setText(address);
-                //  sendEmail(latitude,longitude);
-//SendMail sm = new SendMail(this,"moulichowdhary@gmail.com", "meowmeaow", getCompleteAddressString(double LATITUDE, double LONGITUDE));
-                //            sm.execute();
+
 
             }
 
@@ -78,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
             }
         };
 
-       // configure_button();
+
     }
 
     @Override
@@ -114,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     private String getCompleteAddressString(double LATITUDE, double LONGITUDE) {
-        String strAdd = "huhuhuhuhu";
+        String strAdd = "Just a message when location is not loaded";
 
         Geocoder geocoder = new Geocoder(this, Locale.getDefault());
         try {

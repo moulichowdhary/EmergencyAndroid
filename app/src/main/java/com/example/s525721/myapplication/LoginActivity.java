@@ -33,31 +33,7 @@ RegistrationActivity ra = new RegistrationActivity();
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-//        Parse.initialize(new Parse.Configuration.Builder(this)
-//                .applicationId("81HoKnauaDlvgFHGRd7hBCNrjEt4V70MOSHW4F0w")
-//                .clientKey("BrXxoHxS4BCALYGmO0QyOxvz3QB9j26SLGFTfZx5")
-//                .server("https://parseapi.back4app.com") // The trailing slash is important.
-//
-//
-//                .build()
-//        );
-//
 
-//        Client client = new Client.Builder("kid_HkHZyB8ll", "4b63fb1b209143dda5f64477e9acdf10", getApplicationContext()).build();
-//
-//        client.ping(new KinveyPingCallback() {
-//            @Override
-//            public void onSuccess(Boolean aBoolean) {
-//                Toast.makeText(LoginActivity.this, "our ping is fine", Toast.LENGTH_LONG).show();
-//            }
-//
-//            @Override
-//            public void onFailure(Throwable throwable) {
-//
-//            }
-//        });
-
-        //register button
         rigisterBTN = (Button) findViewById(R.id.register);
         rigisterBTN.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,12 +73,6 @@ RegistrationActivity ra = new RegistrationActivity();
                     @Override
                     public void done(ParseUser user, ParseException e) {
 
-                        //Log.d(user.toString(),"");
-//                        Toast.makeText(getApplicationContext(), email, Toast.LENGTH_LONG).show();
-//                        Toast.makeText(getApplicationContext(), password, Toast.LENGTH_LONG).show();
-                        //Toast.makeText(getApplicationContext(), user.getUsername() + password, Toast.LENGTH_LONG).show();
-                        // Toast.makeText(getApplicationContext(), user.getUsername(), Toast.LENGTH_LONG).show();
-                        //Log.d("Log here" + user, "");
 
                         if (e == null) {
                             Log.d("here" + user, "");
