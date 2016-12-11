@@ -24,7 +24,7 @@ Boolean success = true;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
 
-
+//button 
         Button button3 = (Button) findViewById(R.id.button3);
 
 //        name = (EditText)findViewById(editText2) ;
