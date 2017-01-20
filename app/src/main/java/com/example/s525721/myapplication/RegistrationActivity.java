@@ -24,7 +24,7 @@ Boolean success = true;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
 
-//button 
+//button
         Button button3 = (Button) findViewById(R.id.button3);
 
 //        name = (EditText)findViewById(editText2) ;
@@ -69,7 +69,7 @@ Boolean success = true;
         //address = (EditText) findViewById(R.id.editText5);
         String user919ID = user919.getText().toString();
         String nameOfUser = name.getText().toString();
-        String eMail = email.getText().toString().trim();
+        String eMail = email.getText().toString();
 
 
         String pass = password.getText().toString();
@@ -82,7 +82,8 @@ Boolean success = true;
 //        users.put("password", String.valueOf(pass));
 //        users.put("confirmPassword", String.valueOf(cpass));
 //        users.put("address", String.valueOf(addrs));
-
+        ParseUser currentUser = ParseUser.getCurrentUser();
+        currentUser.logOut();
         ParseUser user = new ParseUser();
 
         //user.put("name", String.valueOf(nameOfUser));
@@ -132,7 +133,7 @@ Boolean success = true;
                 public void done(ParseException e) {
 
                     if (e != null) {
-
+                        Log.d(e.toString(),"Error occured");
                         Toast.makeText(RegistrationActivity.this,
                                 "Saving user failed.", Toast.LENGTH_SHORT).show();
 

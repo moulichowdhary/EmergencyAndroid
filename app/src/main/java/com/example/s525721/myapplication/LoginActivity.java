@@ -57,12 +57,12 @@ RegistrationActivity ra = new RegistrationActivity();
 
 
                 final String password = Password.getText().toString();
-                String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+               // String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
 
 
 
-                 if (!email.matches(emailPattern) ) {
-                    Toast.makeText(getApplicationContext(), "Invalid email address", Toast.LENGTH_SHORT).show();
+                 if (email.isEmpty() ) {
+                    Toast.makeText(getApplicationContext(), "Invalid id ", Toast.LENGTH_SHORT).show();
 //                    success = false;
                 } else if (password.isEmpty()) {
                      Toast.makeText(getApplicationContext(), "Please enter password", Toast.LENGTH_SHORT).show();
@@ -78,7 +78,7 @@ RegistrationActivity ra = new RegistrationActivity();
                             Log.d("here" + user, "");
 
 
-                            Intent i = new Intent(getApplicationContext(), MajorActivity.class);
+                            Intent i = new Intent(getApplicationContext(), MainActivity.class);
 
                             startActivity(i);
                         }else{
