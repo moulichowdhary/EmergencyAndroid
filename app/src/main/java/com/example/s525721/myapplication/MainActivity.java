@@ -18,6 +18,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import java.io.IOException;
@@ -25,7 +26,7 @@ import java.util.List;
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
-    private Button b;
+    private ImageButton locationIBTN,complaintIBTN;
     private TextView t;
     private TextView kk;
     private LocationManager locationManager;
@@ -39,9 +40,10 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 
-        t = (TextView) findViewById(R.id.textView2);
-        b = (Button) findViewById(R.id.locationBTN);
-        kk = (TextView) findViewById(R.id.textView3);
+       // t = (TextView) findViewById(R.id.textView2);
+        locationIBTN = (ImageButton) findViewById(R.id.emergencyIBTN);
+        complaintIBTN = (ImageButton) findViewById(R.id.complaintIBTN);
+       // kk = (TextView) findViewById(R.id.textView3);
 
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
 
@@ -100,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
         // this code won't execute IF permissions are not allowed, because in the line above there is return statement.
-        b.setOnClickListener(new View.OnClickListener() {
+        locationIBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //noinspection MissingPermission
@@ -125,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
                     strReturnedAddress.append(returnedAddress.getAddressLine(i)).append("\n");
                 }
                 strAdd = strReturnedAddress.toString();
-                Log.w("My Current location address", "" + strReturnedAddress.toString());
+                Log.w(  strReturnedAddress.toString(),"My Current location address");
             } else {
                 Log.w("My Current location address", "No Address returned!");
             }

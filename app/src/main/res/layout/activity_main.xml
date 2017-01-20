@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -8,39 +9,31 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:weightSum="1"
-    android:background="@mipmap/visi"
+    android:background="@mipmap/regbg"
 
 
     >
 
 
-    <TextView
 
-        android:layout_width="349dp"
+
+    <ImageButton
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/textView2"
-        android:textColor="#ffffff"
-        android:layout_alignTop="@+id/locationBTN"
-        android:layout_alignParentEnd="true" />
+        app:srcCompat="@mipmap/emergency"
+        android:layout_marginTop="117dp"
+        android:id="@+id/emergencyIBTN"
 
-    <TextView
-
-        android:layout_width="108dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView3"
-        android:textColor="#ffffff"
-        android:layout_above="@+id/locationBTN"
         android:layout_centerHorizontal="true" />
 
-    <Button
-
-
-        android:layout_width="250dp"
-        android:layout_height="250dp"
-        android:id="@+id/locationBTN"
-        android:layout_weight="0.30"
-        android:textColor="#fdfbfb"
-        android:background="@android:color/transparent"
-        android:layout_centerVertical="true"
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@mipmap/complaintimage"
+        android:layout_marginTop="45dp"
+        android:id="@+id/complaintIBTN"
+        android:layout_below="@+id/emergencyIBTN"
+        android:layout_marginBottom="50dp"
         android:layout_centerHorizontal="true" />
+
 </RelativeLayout>
