@@ -53,7 +53,7 @@ RegistrationActivity ra = new RegistrationActivity();
                 userID = (EditText) findViewById(R.id.editText);
                 Password = (EditText) findViewById(R.id.editText7);
 
-                final String email = userID.getText().toString();
+                final String user919ID = userID.getText().toString();
 
 
                 final String password = Password.getText().toString();
@@ -61,14 +61,14 @@ RegistrationActivity ra = new RegistrationActivity();
 
 
 
-                 if (email.isEmpty() ) {
+                 if (user919ID.isEmpty() ) {
                     Toast.makeText(getApplicationContext(), "Invalid id ", Toast.LENGTH_SHORT).show();
 //                    success = false;
                 } else if (password.isEmpty()) {
                      Toast.makeText(getApplicationContext(), "Please enter password", Toast.LENGTH_SHORT).show();
 //                    success = false;
                  }else{
-                ParseUser.logInInBackground(email, password, new LogInCallback() {
+                ParseUser.logInInBackground(user919ID, password, new LogInCallback() {
 
                     @Override
                     public void done(ParseUser user, ParseException e) {
