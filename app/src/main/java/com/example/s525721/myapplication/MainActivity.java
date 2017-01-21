@@ -25,8 +25,8 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
-public class MainActivity extends AppCompatActivity {
-    private ImageButton locationIBTN,complaintIBTN;
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+    private ImageButton locationIBTN, complaintIBTN;
     private TextView t;
     private TextView kk;
     private LocationManager locationManager;
@@ -40,10 +40,10 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 
-       // t = (TextView) findViewById(R.id.textView2);
+        // t = (TextView) findViewById(R.id.textView2);
         locationIBTN = (ImageButton) findViewById(R.id.emergencyIBTN);
         complaintIBTN = (ImageButton) findViewById(R.id.complaintIBTN);
-       // kk = (TextView) findViewById(R.id.textView3);
+        // kk = (TextView) findViewById(R.id.textView3);
 
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
 
@@ -77,7 +77,8 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
             }
         };
-
+        locationIBTN.setOnClickListener(this);
+        complaintIBTN.setOnClickListener(this);
 
     }
 
@@ -102,14 +103,14 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
         // this code won't execute IF permissions are not allowed, because in the line above there is return statement.
-        locationIBTN.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //noinspection MissingPermission
-                locationManager.requestLocationUpdates("gps", 5000, 0, listener);
-                sendEmail(latitude, longitude);
-            }
-        });
+//        locationIBTN.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                //noinspection MissingPermission
+//                locationManager.requestLocationUpdates("gps", 5000, 0, listener);
+//                sendEmail(latitude, longitude);
+//            }
+//        });
     }
 
 
@@ -127,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
                     strReturnedAddress.append(returnedAddress.getAddressLine(i)).append("\n");
                 }
                 strAdd = strReturnedAddress.toString();
-                Log.w(  strReturnedAddress.toString(),"My Current location address");
+                Log.w(strReturnedAddress.toString(), "My Current location address");
             } else {
                 Log.w("My Current location address", "No Address returned!");
             }
@@ -153,6 +154,31 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.emergencyIBTN:
+                //configure_button();
+                if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                    // TODO: Consider calling
+                    //    ActivityCompat#requestPermissions
+                    // here to request the missing permissions, and then overriding
+                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                    //                                          int[] grantResults)
+                    // to handle the case where the user grants the permission. See the documentation
+                    // for ActivityCompat#requestPermissions for more details.
+                    return;
+                }
+                locationManager.requestLocationUpdates("gps", 5000, 0, listener);
+                sendEmail(latitude, longitude);
+                break;
+            case R.id.complaintIBTN:
+                Log.d("complaint","major activity");
+                Intent i = new Intent(this, MajorActivity.class);
+                startActivity(i);
+
+        }
+    }
 }
 
 
