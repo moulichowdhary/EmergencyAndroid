@@ -28,6 +28,8 @@ import java.util.List;
 public class LoginActivity extends AppCompatActivity {
     private EditText userID, Password;
     private Button button4, rigisterBTN;
+
+
 RegistrationActivity ra = new RegistrationActivity();
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -18,7 +18,68 @@ import com.parse.SignUpCallback;
 
 public class RegistrationActivity extends AppCompatActivity {
     EditText name, email, password, confirmPassword, user919;
-Boolean success = true;
+    Boolean success = true;
+    int countUpper = 0;
+    int countLower = 0;
+    int countDigit = 0;
+    int countSpecialChar = 0;
+
+    String toast = "";
+    public void toast(String toast){
+        Toast.makeText(getApplicationContext(), toast, Toast.LENGTH_SHORT).show();
+    }
+
+
+
+    public static final String SPECIAL_CHARACTERS = "!@#$%^&*()~`-=_+[]{}|:\";',./<>?";
+    public static final int MIN_PASSWORD_LENGTH = 8;
+    public static final int MAX_PASSWORD_LENGTH = 20;
+
+    public  boolean isAcceptablePassword(String password) {
+        if (password.isEmpty()) {
+            System.out.println("empty string.");
+            success = false;
+        }
+        password = password.trim();
+        int len = password.length();
+        if (len < MIN_PASSWORD_LENGTH || len > MAX_PASSWORD_LENGTH) {
+            toast("wrong size, it must have at least 8 characters and less than 20.");
+            success = false;
+        } else {
+            char[] aC = password.toCharArray();
+            for (char c : aC) {
+                if (Character.isUpperCase(c)) {
+                    System.out.println(c + " is uppercase.");
+                    countUpper++;
+                } else if (Character.isLowerCase(c)) {
+                    System.out.println(c + " is lowercase.");
+                    countLower++;
+                } else if (Character.isDigit(c)) {
+                    System.out.println(c + " is digit.");
+                    countDigit++;
+                } else if (SPECIAL_CHARACTERS.indexOf(String.valueOf(c)) >= 0) {
+                    System.out.println(c + " is valid symbol.");
+                    countSpecialChar++;
+                } else {
+                    toast(c + "  is an invalid character in the password.");
+                    success = false;
+                    //return success;
+                }
+            }
+            if (countUpper < 1 || countDigit < 1 || countLower < 1 || countSpecialChar < 1) {
+                toast = "password doesn't match policy";
+                toast(toast);
+                success = false;
+            } else {
+                toast("password success");
+                success = true;
+            }
+
+        }
+        return success;
+    }
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -114,12 +175,17 @@ Boolean success = true;
         } else if (pass.isEmpty()) {
             Toast.makeText(getApplicationContext(), "Please enter password", Toast.LENGTH_SHORT).show();
             success = false;
-        } else if (!cpass.equals(pass)) {
+        }else if (!pass.isEmpty()){
+            success = isAcceptablePassword(pass);
+            System.out.print(success);
+        }
+
+        if (!cpass.equals(pass)) {
             Toast.makeText(getApplicationContext(), "Password doesn't match", Toast.LENGTH_SHORT).show();
             success = false;
 
-        } else {
-
+        } else if (isAcceptablePassword(pass)) {
+//System.out.print("Entereesd");
 //data saved to database
 
 
