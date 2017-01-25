@@ -67,7 +67,7 @@ public class RegistrationActivity extends AppCompatActivity {
                 }
             }
             if (countUpper < 1 || countDigit < 1 || countLower < 1 || countSpecialChar < 1) {
-                toast = "password doesn't match policy";
+                toast = "password doesn't match requirements";
                 toast(toast);
                 success = false;
             } else {
@@ -223,7 +223,7 @@ public class RegistrationActivity extends AppCompatActivity {
                         Toast.makeText(RegistrationActivity.this, "User Saved",
                                 Toast.LENGTH_SHORT).show();
                         success = true;
-                    /*Do some things here if you want to.*/
+
 
                     }
 

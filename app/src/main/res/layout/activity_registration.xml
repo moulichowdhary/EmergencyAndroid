@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_registration"
     android:layout_width="match_parent"
@@ -9,34 +9,51 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:background="@mipmap/regbg"
+android:weightSum="4"
+    tools:context="com.example.s525721.myapplication.LoginActivity"
+    android:orientation="vertical">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_weight="3.3"
+    >
 
-    tools:context="com.example.s525721.myapplication.LoginActivity">
 
+</LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="0.7"
+        android:orientation="vertical">
+    <TextView
+        android:text="Registration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView4"
+        android:textSize="24sp"
+        android:layout_marginBottom="19dp"
+        android:lineSpacingExtra="8sp"
+        android:fontFamily="serif"
+        android:textStyle="normal|bold"
+        android:textAllCaps="true"
+        android:layout_above="@+id/editText8"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_horizontal"/>
 
     <EditText
-        android:drawableLeft="@mipmap/password"
-        android:layout_width="wrap_content"
+        android:drawableLeft="@mipmap/user"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:ems="10"
-        android:textColor="#000000"
-        android:id="@+id/editText6"
-        android:hint="confirm password"
-        android:background="#ffffff"
-        android:layout_above="@+id/button3"
-        android:layout_alignStart="@+id/editText4"
-        android:layout_marginBottom="12dp"
-        android:layout_alignParentEnd="true" />
+        android:inputType="textPersonName"
 
-    <Button
-        android:text="Submit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="57dp"
-        android:id="@+id/button3"
-        tools:text="Submit"
-        android:background="@drawable/circle_side"
-        android:layout_alignParentBottom="true"
+        android:background="#ffffff"
+        android:textColor="#000000"
+        android:id="@+id/editText8"
+        android:hint="919######"
+
+
+        android:layout_above="@+id/editText2"
         android:layout_centerHorizontal="true" />
 
     <EditText
@@ -44,31 +61,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:ems="10"
+
         android:background="#ffffff"
         android:textColor="#000000"
         android:id="@+id/editText2"
         android:hint="Last name, First Name"
+
         android:layout_centerVertical="true"
         android:layout_alignParentStart="true" />
 
     <EditText
-        android:drawableLeft="@mipmap/password"
-        android:inputType="textPassword"
-        android:ems="10"
-        android:id="@+id/editText4"
-        android:hint="password"
-        android:textColor="#000000"
-        android:background="#ffffff"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/editText6"
-        android:layout_alignEnd="@+id/button3"
-        android:layout_marginBottom="11dp" />
-
-    <EditText
         android:drawableLeft="@mipmap/user"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
         android:ems="10"
@@ -80,32 +84,62 @@
         android:hint="abc@mail.com" />
 
     <EditText
-        android:drawableLeft="@mipmap/user"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
+        android:drawableLeft="@mipmap/password"
+        android:inputType="textPassword"
         android:ems="10"
-        android:background="#ffffff"
+        android:id="@+id/editText4"
+        android:hint=" password"
         android:textColor="#000000"
-        android:id="@+id/editText8"
-        android:hint="919#"
-        android:layout_above="@+id/editText2"
-        android:layout_alignStart="@+id/editText4"
-        android:layout_marginBottom="16dp" />
+        android:background="#ffffff"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/editText6"
+        android:layout_alignEnd="@+id/button3"
+        android:layout_marginBottom="11dp"
+        android:paddingLeft="4dp"
+        />
 
-    <TextView
-        android:text="Registration"
+    <EditText
+        android:drawableLeft="@mipmap/password"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:textColor="#000000"
+        android:id="@+id/editText6"
+        android:hint=" confirm password"
+        android:background="#ffffff"
+        android:layout_above="@+id/button3"
+        android:layout_alignStart="@+id/editText4"
+        android:layout_marginBottom="12dp"
+        android:layout_alignParentEnd="true"
+        android:paddingLeft="4dp"
+        />
+
+
+
+    <Button
+        android:text="Submit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/textView4"
-        android:textSize="24sp"
-        android:layout_marginBottom="47dp"
-        android:lineSpacingExtra="8sp"
-        android:fontFamily="serif"
-        android:textStyle="normal|bold"
-        android:textAllCaps="true"
-        android:layout_above="@+id/editText8"
-        android:layout_centerHorizontal="true" />
+        android:layout_marginBottom="57dp"
+        android:id="@+id/button3"
+        tools:text="Submit"
+        android:background="@drawable/circle_side"
+        android:textColor="#233fff"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_horizontal"
+
+        />
 
 
-</RelativeLayout>
+
+
+
+
+
+
+    </LinearLayout>
+
+</LinearLayout>
