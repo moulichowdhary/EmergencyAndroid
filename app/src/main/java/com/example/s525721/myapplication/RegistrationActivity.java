@@ -103,6 +103,24 @@ public class RegistrationActivity extends AppCompatActivity {
 //                .build()
 //        );
 
+        //reset button
+        Button reset = (Button) findViewById(R.id.buttonR);
+        reset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               EditText userId = (EditText) findViewById(R.id.editText8);
+                EditText userName = (EditText) findViewById(R.id.editText2);
+               EditText emailId = (EditText) findViewById(R.id.editText3);
+                EditText pswd = (EditText) findViewById(R.id.editText4);
+                EditText cPassword = (EditText) findViewById(R.id.editText6);
+                userId.setText("");
+                userName.setText("");
+                emailId.setText("");
+                pswd.setText("");
+                cPassword.setText("");
+            }
+        });
+
 
         button3.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {

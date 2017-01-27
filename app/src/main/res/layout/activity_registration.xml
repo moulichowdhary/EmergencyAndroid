@@ -116,7 +116,19 @@ android:weightSum="4"
         android:paddingLeft="4dp"
         />
 
-
+        <Button
+            android:text="RESET"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:id="@+id/buttonR"
+            tools:text="RESET"
+            android:background="@drawable/circle_side"
+            android:textColor="#233fff"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="left"
+            />
 
     <Button
         android:text="Submit"
@@ -127,7 +139,7 @@ android:weightSum="4"
         tools:text="Submit"
         android:background="@drawable/circle_side"
         android:textColor="#233fff"
-        android:layout_alignParentBottom="true"
+        android:layout_parentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center_horizontal"
 
