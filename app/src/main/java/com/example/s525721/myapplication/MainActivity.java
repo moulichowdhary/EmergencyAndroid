@@ -25,24 +25,31 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
+import static com.example.s525721.myapplication.R.id.logoutBTN;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private ImageButton locationIBTN, complaintIBTN;
+    private Button logout;
     private TextView t;
     private TextView kk;
     private LocationManager locationManager;
     private LocationListener listener;
     private double latitude;
     private double longitude;
+    SessionManager session;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
+        session = new SessionManager(this);
 
+        session.checkLogin();
         // t = (TextView) findViewById(R.id.textView2);
         locationIBTN = (ImageButton) findViewById(R.id.emergencyIBTN);
         complaintIBTN = (ImageButton) findViewById(R.id.complaintIBTN);
+        logout = (Button) findViewById(logoutBTN);
         // kk = (TextView) findViewById(R.id.textView3);
 
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
@@ -79,6 +86,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         };
         locationIBTN.setOnClickListener(this);
         complaintIBTN.setOnClickListener(this);
+        logout.setOnClickListener(this);
 
     }
 
@@ -176,6 +184,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Log.d("complaint","major activity");
                 Intent i = new Intent(this, MajorActivity.class);
                 startActivity(i);
+                break;
+
+            case logoutBTN:
+                session.logoutUser();
 
         }
     }

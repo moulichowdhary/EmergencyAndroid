@@ -1,6 +1,8 @@
 package com.example.s525721.myapplication;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -29,12 +31,19 @@ public class LoginActivity extends AppCompatActivity {
     private EditText userID, Password;
     private Button button4, rigisterBTN;
 
+    SharedPreferences sharedpreferences;
+    SharedPreferences.Editor editor;
+    SessionManager session;
 
-RegistrationActivity ra = new RegistrationActivity();
+    RegistrationActivity ra = new RegistrationActivity();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        session = new SessionManager(this);
+        sharedpreferences = getSharedPreferences("Prefs", Context.MODE_PRIVATE);
+        editor = sharedpreferences.edit();
+
 
         rigisterBTN = (Button) findViewById(R.id.register);
         rigisterBTN.setOnClickListener(new View.OnClickListener() {
@@ -52,6 +61,9 @@ RegistrationActivity ra = new RegistrationActivity();
 
         button4.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
+
+
+
                 userID = (EditText) findViewById(R.id.editText);
                 Password = (EditText) findViewById(R.id.editText7);
 
@@ -60,6 +72,8 @@ RegistrationActivity ra = new RegistrationActivity();
 
                 final String password = Password.getText().toString();
                // String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+
+
 
 
 
@@ -77,12 +91,18 @@ RegistrationActivity ra = new RegistrationActivity();
 
 
                         if (e == null) {
-                            Log.d("here" + user, "");
 
+                           session.createLoginSession(user919ID,password);
 
                             Intent i = new Intent(getApplicationContext(), MainActivity.class);
 
                             startActivity(i);
+                            finish();
+                            Log.i(sharedpreferences.getString("passKey",""),"Good ");
+                            System.out.print(sharedpreferences.getBoolean(
+                                    "IS_Login",true));
+                            Toast.makeText(getApplicationContext(),sharedpreferences.getBoolean("IS_Login", false)+"", Toast.LENGTH_SHORT).show();
+
                         }else{
                             Toast.makeText(getApplicationContext(), "No such user exist", Toast.LENGTH_LONG).show();
                         }
