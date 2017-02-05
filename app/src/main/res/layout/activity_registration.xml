@@ -139,7 +139,7 @@ android:weightSum="4"
         tools:text="Submit"
         android:background="@drawable/circle_side"
         android:textColor="#233fff"
-        android:layout_parentBottom="true"
+
         android:layout_centerHorizontal="true"
         android:layout_gravity="center_horizontal"
 

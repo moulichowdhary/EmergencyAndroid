@@ -30,8 +30,8 @@ import static com.example.s525721.myapplication.R.id.logoutBTN;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private ImageButton locationIBTN, complaintIBTN;
     private Button logout;
-    private TextView t;
-    private TextView kk;
+//    private TextView t;
+//    private TextView kk;
     private LocationManager locationManager;
     private LocationListener listener;
     private double latitude;
@@ -58,11 +58,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         listener = new LocationListener() {
             @Override
             public void onLocationChanged(Location location) {
-                t.setText(location.getLongitude() + " " + location.getLatitude());
+               // t.setText(location.getLongitude() + " " + location.getLatitude());
                 latitude = location.getLatitude();
                 longitude = location.getLongitude();
                 String address = getCompleteAddressString(latitude, longitude);
-                kk.setText(address);
+               // kk.setText(address);
 
 
             }
