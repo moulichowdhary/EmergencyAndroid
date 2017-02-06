@@ -20,6 +20,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.IOException;
 import java.util.List;
@@ -28,9 +29,9 @@ import java.util.Locale;
 import static com.example.s525721.myapplication.R.id.logoutBTN;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-    private ImageButton locationIBTN, complaintIBTN;
-    private Button logout;
-//    private TextView t;
+     ImageButton locationIBTN,complaintIBTN;
+     Button logout;
+    //    private TextView t;
 //    private TextView kk;
     private LocationManager locationManager;
     private LocationListener listener;
@@ -42,6 +43,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
         setContentView(R.layout.activity_main);
         session = new SessionManager(this);
 
@@ -49,8 +51,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         // t = (TextView) findViewById(R.id.textView2);
         locationIBTN = (ImageButton) findViewById(R.id.emergencyIBTN);
         complaintIBTN = (ImageButton) findViewById(R.id.complaintIBTN);
-        logout = (Button) findViewById(logoutBTN);
-        // kk = (TextView) findViewById(R.id.textView3);
+        logout = (Button) findViewById(R.id.logoutBTN);
+//        t = (TextView) findViewById(R.id.textView2);
+//        b = (Button) findViewById(R.id.locationBTN);
+//        kk = (TextView) findViewById(R.id.textView3);
 
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
 
@@ -62,6 +66,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 latitude = location.getLatitude();
                 longitude = location.getLongitude();
                 String address = getCompleteAddressString(latitude, longitude);
+                Toast.makeText(getApplicationContext(),address,Toast.LENGTH_SHORT).show();
                // kk.setText(address);
 
 
@@ -84,10 +89,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(i);
             }
         };
-        locationIBTN.setOnClickListener(this);
+
         complaintIBTN.setOnClickListener(this);
         logout.setOnClickListener(this);
-
     }
 
     @Override
@@ -111,17 +115,30 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             return;
         }
         // this code won't execute IF permissions are not allowed, because in the line above there is return statement.
-//        locationIBTN.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                //noinspection MissingPermission
-//                locationManager.requestLocationUpdates("gps", 5000, 0, listener);
-//                sendEmail(latitude, longitude);
-//            }
-//        });
+        locationIBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //noinspection MissingPermission
+                locationManager.requestLocationUpdates("gps", 5000, 0, listener);
+                sendEmail(latitude, longitude);
+            }
+        });
     }
 
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.complaintIBTN:
+                Log.d("complaint","major activity");
+                Intent i = new Intent(this, MajorActivity.class);
+                startActivity(i);
+                break;
 
+            case R.id.logoutBTN:
+                session.logoutUser();
+
+        }
+    }
     private String getCompleteAddressString(double LATITUDE, double LONGITUDE) {
         String strAdd = "Just a message when location is not loaded";
 
@@ -136,7 +153,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     strReturnedAddress.append(returnedAddress.getAddressLine(i)).append("\n");
                 }
                 strAdd = strReturnedAddress.toString();
-                Log.w(strReturnedAddress.toString(), "My Current location address");
+                Log.w("My Current location address", "" + strReturnedAddress.toString());
             } else {
                 Log.w("My Current location address", "No Address returned!");
             }
@@ -161,36 +178,4 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.emergencyIBTN:
-                //configure_button();
-                if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                    // TODO: Consider calling
-                    //    ActivityCompat#requestPermissions
-                    // here to request the missing permissions, and then overriding
-                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                    //                                          int[] grantResults)
-                    // to handle the case where the user grants the permission. See the documentation
-                    // for ActivityCompat#requestPermissions for more details.
-                    return;
-                }
-                locationManager.requestLocationUpdates("gps", 5000, 0, listener);
-                sendEmail(latitude, longitude);
-                break;
-            case R.id.complaintIBTN:
-                Log.d("complaint","major activity");
-                Intent i = new Intent(this, MajorActivity.class);
-                startActivity(i);
-                break;
-
-            case logoutBTN:
-                session.logoutUser();
-
-        }
-    }
 }
-
-
