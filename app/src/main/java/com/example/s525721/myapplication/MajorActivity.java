@@ -8,6 +8,7 @@ import android.widget.Button;
 
 public class MajorActivity extends AppCompatActivity {
 SessionManager session;
+    private Button EmergencyContacts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,5 +25,19 @@ SessionManager session;
 //
 //            }
 //        });
+
+        // action to be executed when emergency contacts button is clicked. It displays phone numbers of different help services.
+        EmergencyContacts = (Button) findViewById(R.id.buttonE);
+        EmergencyContacts.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), PhoneNumbers.class);
+                startActivity(intent);
+            }
+        });
+
     }
 }
+
+
+
