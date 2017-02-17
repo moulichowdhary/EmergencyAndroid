@@ -1,18 +1,13 @@
 package com.example.s525721.myapplication;
 
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 
-/**
- * Created by S525908 on 2/5/2017.
- */
-//phone numbers class into project
-public class PhoneNumbers extends AppCompatActivity {
+public class PhoneNumber extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_phonenumbers);
+        setContentView(R.layout.activity_phone_number);
     }
-
 }
