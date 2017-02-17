@@ -1,0 +1,9 @@
+Fruits,QuantitySold
+Apples,60
+Bananas,90
+Oranges,120
+Pears,150
+
+
+Jaffa gallu
+aandaru jaffa galle
