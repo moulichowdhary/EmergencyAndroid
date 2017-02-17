@@ -58,11 +58,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         listener = new LocationListener() {
             @Override
             public void onLocationChanged(Location location) {
-                t.setText(location.getLongitude() + " " + location.getLatitude());
+          //      t.setText(location.getLongitude() + " " + location.getLatitude());
                 latitude = location.getLatitude();
                 longitude = location.getLongitude();
                 String address = getCompleteAddressString(latitude, longitude);
-                kk.setText(address);
+             //   kk.setText(address);
 
 
             }
