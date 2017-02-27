@@ -31,7 +31,7 @@ SessionManager session;
         EmergencyContacts.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), PhoneNumbers.class);
+                Intent intent = new Intent(getApplicationContext(), PhoneNumber.class);
                 startActivity(intent);
             }
         });
