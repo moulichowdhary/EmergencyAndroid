@@ -45,8 +45,7 @@
         android:background="@drawable/round_small_button"
         android:textColor="#ffffff"
         android:id="@+id/button5"
-        android:layout_below="@+id/button"
-        android:layout_alignEnd="@+id/button" />
+         />
 
     <TextView
         android:text="Report a complaint"
@@ -72,7 +71,16 @@
         android:layout_below="@+id/button6"
         android:layout_centerHorizontal="true" />
 
-
+    <Button
+        android:text="Emergency Contacts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="81dp"
+        android:id="@+id/buttonE"
+        android:background="@drawable/round_small_blue"
+        android:textColor="#ffffff"
+        android:layout_below="@+id/button7"
+        android:layout_centerHorizontal="true" />
 
 
 

@@ -16,8 +16,6 @@
         android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
         <activity android:name=".LoginActivity">
             <intent-filter>
-
-
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
@@ -38,7 +36,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ComplaintActivity"></activity>
+        <activity android:name=".ComplaintActivity" />
+        <activity android:name=".PhoneNumber"></activity>
     </application>
 
 </manifest>
