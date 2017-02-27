@@ -39,6 +39,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private double longitude;
     SessionManager session;
 
+    public ImageButton getLocationIBTN() {
+        return locationIBTN;
+    }
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -105,7 +117,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    void configure_button() {
+   public void configure_button() {
         // first check for permissions
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -120,6 +132,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public void onClick(View view) {
                 //noinspection MissingPermission
                 locationManager.requestLocationUpdates("gps", 5000, 0, listener);
+                //void requestLocationUpdates (String provider,  long minTime,  float minDistance, LocationListener listener)
                 sendEmail(latitude, longitude);
             }
         });
@@ -130,7 +143,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (view.getId()) {
             case R.id.complaintIBTN:
                 Log.d("complaint","major activity");
-                Intent i = new Intent(this, MajorActivity.class);
+                Intent i = new Intent(this, ComplaintActivity.class);
                 startActivity(i);
                 break;
 
@@ -139,7 +152,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         }
     }
-    private String getCompleteAddressString(double LATITUDE, double LONGITUDE) {
+    public String getCompleteAddressString(double LATITUDE, double LONGITUDE) {
         String strAdd = "Just a message when location is not loaded";
 
         Geocoder geocoder = new Geocoder(this, Locale.getDefault());
@@ -167,12 +180,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 
-    private void sendEmail(double latitude, double longitude) {
+    protected void sendEmail(double latitude, double longitude) {
 
         String sub = getCompleteAddressString(latitude, longitude);
         String body = "http://www.google.com/maps/place/" + String.valueOf(latitude) + "," + String.valueOf(longitude);
 
-        SendMail sm = new SendMail(this, "moulichowdhary@gmail.com", sub, sub + "\n" + body);
+        SendMail sm = new SendMail(this, "makkenasrinivasarao1@gmail.com", sub, sub + "\n" + body);
         sm.execute();
 
 
