@@ -15,10 +15,10 @@ import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
 public class ComplaintActivity extends AppCompatActivity {
-    private EditText data;
+    public EditText data;
     private Button submitReport;
 
-    MainActivity sendMailWithReport = new MainActivity();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,7 +33,7 @@ public class ComplaintActivity extends AppCompatActivity {
 
                 Log.d("Enter to fileComplaint","Success1");
                 if (fileComplaint()==true){
-                    sendMailWithReport.sendEmail(sendMailWithReport.getLatitude(),sendMailWithReport.getLongitude());
+
                     Toast.makeText(getApplicationContext(), "Success- report added", Toast.LENGTH_SHORT);
 
                 }else{
@@ -43,16 +43,7 @@ public class ComplaintActivity extends AppCompatActivity {
         });
 
     }
-//    public void sendEmail(double latitude, double longitude) {
-//
-//        String sub = sendMailWithReport.getCompleteAddressString(latitude, longitude);
-//        String body = "http://www.google.com/maps/place/" + String.valueOf(latitude) + "," + String.valueOf(longitude);
-//
-//        SendMail sm = new SendMail(this, "moulichowdhary@gmail.com", sub, sub + "\n" + body);
-//        sm.execute();
-//
-//
-//    }
+
 
 
     private boolean result;
@@ -72,7 +63,10 @@ public class ComplaintActivity extends AppCompatActivity {
                // Log.d("Enter to fileComplaint",e.getMessage());
                 if (e == null) {
                     Toast.makeText(getApplicationContext(), "Report saved", Toast.LENGTH_SHORT);
+                   sendEmail();
                     result = true;
+
+
 
                 } else {
                     Toast.makeText(getApplicationContext(), "Report not saved", Toast.LENGTH_SHORT);
@@ -82,6 +76,18 @@ public class ComplaintActivity extends AppCompatActivity {
         });
         return result;
     }
+
+
+
+    protected void sendEmail( ) {
+
+ SendMail sm = new SendMail(this, "moulichowdhary@gmail.com", "New Complaint from a student",  data.getText().toString() + "\n" +  data.getText().toString());
+        sm.execute();
+
+
+    }
+
+
 
 
 
