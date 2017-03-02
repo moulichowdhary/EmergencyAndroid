@@ -43,7 +43,6 @@ public class ComplaintActivity extends AppCompatActivity {
         });
 
     }
-    
 //    public void sendEmail(double latitude, double longitude) {
 //
 //        String sub = sendMailWithReport.getCompleteAddressString(latitude, longitude);
@@ -73,7 +72,10 @@ public class ComplaintActivity extends AppCompatActivity {
                // Log.d("Enter to fileComplaint",e.getMessage());
                 if (e == null) {
                     Toast.makeText(getApplicationContext(), "Report saved", Toast.LENGTH_SHORT);
+                   sendEmail();
                     result = true;
+
+
 
                 } else {
                     Toast.makeText(getApplicationContext(), "Report not saved", Toast.LENGTH_SHORT);
@@ -83,6 +85,18 @@ public class ComplaintActivity extends AppCompatActivity {
         });
         return result;
     }
+
+
+
+    protected void sendEmail( ) {
+
+ SendMail sm = new SendMail(this, "moulichowdhary@gmail.com", "New Complaint from a student",  data.getText().toString() + "\n" +  data.getText().toString());
+        sm.execute();
+
+
+    }
+
+
 
 
 

@@ -54,8 +54,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
         setContentView(R.layout.activity_main);
         session = new SessionManager(this);
 
@@ -133,7 +131,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 //noinspection MissingPermission
                 locationManager.requestLocationUpdates("gps", 5000, 0, listener);
                 //void requestLocationUpdates (String provider,  long minTime,  float minDistance, LocationListener listener)
-                sendEmail(latitude, longitude);
+
+
+               String subject =  getCompleteAddressString(latitude, longitude);
+
+                sendEmail(latitude, longitude, subject);
+
             }
         });
     }
@@ -153,7 +156,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
     public String getCompleteAddressString(double LATITUDE, double LONGITUDE) {
-        String strAdd = "Just a message when location is not loaded";
+        String strAdd = "Location is not loaded";
 
         Geocoder geocoder = new Geocoder(this, Locale.getDefault());
         try {
@@ -166,13 +169,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     strReturnedAddress.append(returnedAddress.getAddressLine(i)).append("\n");
                 }
                 strAdd = strReturnedAddress.toString();
-                Log.w("My Current location address", "" + strReturnedAddress.toString());
+                Log.w("MyCurrentlocationaddr", "" + strReturnedAddress.toString());
             } else {
-                Log.w("My Current location address", "No Address returned!");
+                Log.w("MyCurrentlocationaddr", "No Address returned!");
             }
         } catch (Exception e) {
             e.printStackTrace();
-            Log.w("My Current location address", "Cannon get Address!");
+            Log.w("MyCurrentlocationaddr", "Cannon get Address!");
         }
 
 
@@ -180,12 +183,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 
-    protected void sendEmail(double latitude, double longitude) {
+    protected void sendEmail(double latitude, double longitude, String subject) {
 
-        String sub = getCompleteAddressString(latitude, longitude);
+        String sub = subject;
         String body = "http://www.google.com/maps/place/" + String.valueOf(latitude) + "," + String.valueOf(longitude);
 
-        SendMail sm = new SendMail(this, "makkenasrinivasarao1@gmail.com", sub, sub + "\n" + body);
+        SendMail sm = new SendMail(this, "moulichowdhary@gmail.com", sub, sub + "\n" + body);
         sm.execute();
 
 
