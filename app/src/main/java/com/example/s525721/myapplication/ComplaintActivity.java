@@ -43,6 +43,7 @@ public class ComplaintActivity extends AppCompatActivity {
         });
 
     }
+    
 //    public void sendEmail(double latitude, double longitude) {
 //
 //        String sub = sendMailWithReport.getCompleteAddressString(latitude, longitude);
