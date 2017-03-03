@@ -1,13 +1,20 @@
 package com.example.s525721.myapplication;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.Toast;
 
 import com.parse.Parse;
@@ -20,17 +27,21 @@ import com.parse.SignUpCallback;
 public class RegistrationActivity extends AppCompatActivity {
     EditText name, email, password, confirmPassword, user919;
     Boolean success = true;
+    ImageButton policy;
     int countUpper = 0;
     int countLower = 0;
     int countDigit = 0;
     int countSpecialChar = 0;
+    LinearLayout policyPop;
 
     String toast = "";
     public void toast(String toast){
         Toast.makeText(getApplicationContext(), toast, Toast.LENGTH_SHORT).show();
     }
 
-
+public void popCancel(View view){
+    policyPop.setVisibility(View.INVISIBLE);
+}
 
     public static final String SPECIAL_CHARACTERS = "!@#$%^&*()~`-=_+[]{}|:\";',./<>?";
     public static final int MIN_PASSWORD_LENGTH = 8;
@@ -85,15 +96,32 @@ public class RegistrationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
+        user919 = (EditText) findViewById(R.id.editText8);
+        name = (EditText) findViewById(R.id.editText2);
+        email = (EditText) findViewById(R.id.editText3);
+        password = (EditText) findViewById(R.id.editText4);
+        confirmPassword = (EditText) findViewById(R.id.editText6);
+         policyPop = (LinearLayout)findViewById(R.id.popLayout);
+        policyPop.setVisibility(View.INVISIBLE);
+policy = (ImageButton)findViewById(R.id.passwordPolicy);
+
+policy.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View view) {
+
+        policyPop.setVisibility(View.VISIBLE);
+
+    }
+});
 
 //button
         Button button3 = (Button) findViewById(R.id.button3);
 password.setOnTouchListener(new View.OnTouchListener() {
     @Override
     public boolean onTouch(View view, MotionEvent motionEvent) {
+           // initiatePopupWindow();
 
-
-        return false;
+        return true;
     }
 });
 //        name = (EditText)findViewById(editText2) ;
@@ -145,14 +173,16 @@ password.setOnTouchListener(new View.OnTouchListener() {
             }
         });
     }
+//pop Over
+
+
+
+
+   // Read more: http://www.androidhub4you.com/2012/07/how-to-create-popup-window-in-android.html#ixzz4aEdErRr1
 
     public Boolean savedata() {
        // Boolean success = true;
-        user919 = (EditText) findViewById(R.id.editText8);
-        name = (EditText) findViewById(R.id.editText2);
-        email = (EditText) findViewById(R.id.editText3);
-        password = (EditText) findViewById(R.id.editText4);
-        confirmPassword = (EditText) findViewById(R.id.editText6);
+
         //address = (EditText) findViewById(R.id.editText5);
         String user919ID = user919.getText().toString();
         String nameOfUser = name.getText().toString();

@@ -37,7 +37,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".ComplaintActivity" />
-        <activity android:name=".PhoneNumber"></activity>
+        <activity android:name=".PhoneNumber" />
+        <activity android:name=".PopOverActivity"></activity>
     </application>
 
 </manifest>
