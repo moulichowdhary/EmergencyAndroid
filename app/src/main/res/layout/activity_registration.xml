@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_registration"
     android:layout_width="match_parent"
@@ -7,12 +7,13 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingTop="100dp"
     android:background="@mipmap/regbg"
 android:weightSum="4"
     tools:context="com.example.s525721.myapplication.LoginActivity"
     android:orientation="vertical">
 <LinearLayout
+    android:id="@+id/linear1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_weight="3.3"
@@ -22,6 +23,7 @@ android:weightSum="4"
 </LinearLayout>
 
     <LinearLayout
+
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="0.7"
@@ -115,42 +117,59 @@ android:weightSum="4"
         android:layout_alignParentEnd="true"
         android:paddingLeft="4dp"
         />
-
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_gravity="center"
+    >
         <Button
             android:text="RESET"
-            android:layout_width="wrap_content"
+            android:layout_width="170dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
+
             android:id="@+id/buttonR"
             tools:text="RESET"
             android:background="@drawable/circle_side"
-            android:textColor="#233fff"
+            android:textColor="#ea0e3a"
 
-            android:layout_centerHorizontal="true"
-            android:layout_gravity="left"
+
             />
 
     <Button
         android:text="Submit"
-        android:layout_width="wrap_content"
+        android:layout_width="180dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="57dp"
+
         android:id="@+id/button3"
         tools:text="Submit"
         android:background="@drawable/circle_side"
-        android:textColor="#233fff"
+        android:textColor="#ff2344"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center_horizontal"
-
         />
 
 
 
 
 
+</LinearLayout>
+
+
+        <Button
+            android:text="Forgot Password?"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/forgotPassword"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center_horizontal"
+
+            android:background="@drawable/round_sides_white"
+             />
+
 
 
 
     </LinearLayout>
 
-</LinearLayout>
+</RelativeLayout>

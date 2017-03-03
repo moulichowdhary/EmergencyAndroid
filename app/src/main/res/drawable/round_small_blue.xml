@@ -4,7 +4,7 @@
 
         <shape android:shape="oval">
             <size android:height="50dp" android:width="50dp"/>
-            <solid android:color="#2623df"/>
+            <solid android:color="#707671"/>
         </shape>
     </item>
 </selector>

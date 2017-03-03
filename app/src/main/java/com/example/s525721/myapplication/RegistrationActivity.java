@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -87,7 +88,14 @@ public class RegistrationActivity extends AppCompatActivity {
 
 //button
         Button button3 = (Button) findViewById(R.id.button3);
+password.setOnTouchListener(new View.OnTouchListener() {
+    @Override
+    public boolean onTouch(View view, MotionEvent motionEvent) {
 
+
+        return false;
+    }
+});
 //        name = (EditText)findViewById(editText2) ;
 //        email = (EditText)findViewById(editText3) ;
 //        password = (EditText)findViewById(editText4) ;
