@@ -10,7 +10,8 @@
     >
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:stretchColumns="*">
 <TableLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -29,9 +30,8 @@
     </TableRow>
     <TableRow>
         <TextView
-            android:text="UPD"
-            android:padding="3dip"
-            android:gravity="right"/>
+            android:text="University Police"
+            android:padding="3dip" />
         <TextView
             android:text="660-562-1254 or 911"
             android:gravity="left"
@@ -40,35 +40,222 @@
 
     <TableRow>
     <TextView
-        android:text="Northwest Wellness"
+        android:text="Maryville Police and Fire"
         android:padding="3dip" />
     <TextView
-        android:text="660-562-1348"
+        android:text="660-562-3209"
         android:gravity="left"
         android:padding="3dip" />
-</TableRow>
-    <TableRow>
-        <TextView
-            android:text="Northwest Wellness"
-            android:padding="3dip" />
-        <TextView
-            android:text="660-562-1348"
-            android:gravity="left"
-            android:padding="3dip" />
     </TableRow>
     <TableRow>
         <TextView
-            android:text="Northwest Wellness"
+            android:text="Missouri Highway Patrol"
             android:padding="3dip" />
         <TextView
-            android:text="660-562-1348"
+            android:text="*55"
             android:gravity="left"
             android:padding="3dip" />
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:text="Alchol and Drug Problems"
+            android:padding="10dp"
+            android:layout_span="2"
+            android:textSize="20dp"
+            android:textColor="#ff005e"
+            android:gravity="center"
+
+            />
 
     </TableRow>
     <TableRow>
         <TextView
-            android:text="Northwest Wellness"
+            android:text="Nat'l Drug and Alochol Treatment"
+            android:padding="3dip" />
+        <TextView
+            android:text="1-800-662-4357"
+            android:gravity="left"
+            android:padding="3dip" />
+    </TableRow>
+
+    <TableRow>
+
+    <TextView
+        android:text="Rape and Family Violence"
+        android:padding="10dp"
+        android:layout_span="2"
+        android:textSize="20dp"
+        android:textColor="#ff005e"
+        android:gravity="center"
+
+        />
+    </TableRow>
+    <TableRow>
+        <TextView
+            android:text="Child abuse hotline"
+            android:padding="3dip" />
+        <TextView
+            android:text="1-800-392-3738"
+            android:gravity="left"
+            android:padding="3dip" />
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:text="NWMSU Title IX"
+            android:padding="3dip" />
+        <TextView
+            android:text="660-562-1013"
+            android:gravity="left"
+            android:padding="3dip" />
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:text="SSM St. Francis Health Services"
+            android:padding="3dip" />
+        <TextView
+            android:text="660-562-7922"
+            android:gravity="left"
+            android:padding="3dip" />
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:text="Child and Family Center"
+            android:padding="3dip" />
+        <TextView
+            android:text="660-562-2320"
+            android:gravity="left"
+            android:padding="3dip" />
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:text="Sexual Assault Hotline"
+            android:padding="3dip" />
+        <TextView
+            android:text="660-562-1972"
+            android:gravity="left"
+            android:padding="3dip" />
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:text="National Domestic Violence Hotline"
+            android:padding="3dip" />
+        <TextView
+            android:text="1-800-799-7233"
+            android:gravity="left"
+            android:padding="3dip" />
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:text="National Sexual Assault Hotline"
+            android:padding="3dip" />
+        <TextView
+            android:text="1-800-656-4673"
+            android:gravity="left"
+            android:padding="3dip" />
+    </TableRow>
+
+    <TableRow>
+    <TextView
+        android:text="Hospital Emergency/Medical Care"
+        android:padding="10dp"
+        android:layout_span="2"
+        android:textSize="20dp"
+        android:textColor="#ff005e"
+        android:gravity="center"
+
+        />
+   </TableRow>
+        <TableRow>
+            <TextView
+                android:text="SSM St. Francis Hospital"
+                android:padding="3dip" />
+            <TextView
+                android:text="660-562-2600"
+                android:gravity="left"
+                android:padding="3dip" />
+        </TableRow>
+
+    <TableRow>
+        <TextView
+            android:text="Northwest Wellness Center"
+            android:padding="3dip" />
+        <TextView
+            android:text="660-562-1348"
+            android:gravity="left"
+            android:padding="3dip" />
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:text="Suicide/Medical Health"
+            android:padding="10dp"
+            android:layout_span="2"
+            android:textSize="20dp"
+            android:textColor="#ff005e"
+            android:gravity="center"
+
+            />
+    </TableRow>
+    <TableRow>
+        <TextView
+            android:text="Mental Health Crisis Line"
+            android:padding="3dip" />
+        <TextView
+            android:text="1-888-279-8188"
+            android:gravity="left"
+            android:padding="3dip" />
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:text="Synergy 24 hour youth crisis line"
+            android:padding="3dip" />
+        <TextView
+            android:text="1-888-233-1639"
+            android:gravity="left"
+            android:padding="3dip" />
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:text="Nat'l Suicide Prevention Hotline"
+            android:padding="3dip" />
+        <TextView
+            android:text="1-800-273-8255"
+            android:gravity="left"
+            android:padding="3dip" />
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:text="SSM St. Francis Mental Health"
+            android:padding="3dip" />
+        <TextView
+            android:text="660-562-2227"
+            android:gravity="left"
+            android:padding="3dip" />
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:text="University Police"
+            android:padding="3dip" />
+        <TextView
+            android:text="660-562-1254"
+            android:gravity="left"
+            android:padding="3dip" />
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:text="Wellness Services"
             android:padding="3dip" />
         <TextView
             android:text="660-562-1348"
