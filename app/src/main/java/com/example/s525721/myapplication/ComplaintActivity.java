@@ -53,7 +53,7 @@ public class ComplaintActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-
+sendEmail();
                 Log.d("Enter to fileComplaint","Success1");
                 if (fileComplaint()==true){
                     //sendMailWithReport.sendEmail(sendMailWithReport.getLatitude(),sendMailWithReport.getLongitude());
@@ -101,15 +101,18 @@ public class ComplaintActivity extends AppCompatActivity {
             @Override
             public void done(ParseException e) {
                // Log.d("Enter to fileComplaint",e.getMessage());
+
                 if (e == null) {
-                    Toast.makeText(getApplicationContext(), "Report saved", Toast.LENGTH_SHORT);
-                    sendEmail();
+
+                    Log.d("Enter to fileComplaint","Success3");
+                    Toast.makeText(getApplicationContext(), "Report saved", Toast.LENGTH_SHORT).show();
+                   // sendEmail();
                     result = true;
 
 
 
                 } else {
-                    Toast.makeText(getApplicationContext(), "Report not saved", Toast.LENGTH_SHORT);
+                    Toast.makeText(getApplicationContext(), "Report not saved", Toast.LENGTH_SHORT).show();
                     result = false;
                 }
             }
