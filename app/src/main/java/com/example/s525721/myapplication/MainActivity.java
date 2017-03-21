@@ -3,6 +3,7 @@ package com.example.s525721.myapplication;
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
@@ -33,24 +34,15 @@ import static com.example.s525721.myapplication.R.id.logoutBTN;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
      ImageButton locationIBTN,complaintIBTN;
      Button logout;
-
+TextView name ;
     private LocationManager locationManager;
     private LocationListener listener;
     private double latitude;
     private double longitude;
+    String address;
     SessionManager session;
 
-    public ImageButton getLocationIBTN() {
-        return locationIBTN;
-    }
-
-    public double getLatitude() {
-        return latitude;
-    }
-
-    public double getLongitude() {
-        return longitude;
-    }
+    Intent intent;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -60,6 +52,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         session.checkLogin();
         // t = (TextView) findViewById(R.id.textView2);
+        //intent = getIntent();
+        //name = (TextView) findViewById(R.id.nameTV);
+        //SharedPreferences myPrefs = getSharedPreferences("Prefs", MODE_PRIVATE);  //Activity1.class
+        //String _919id = myPrefs.getString("919Key","");
+       // name.setText("Hello, " + _919id);
         locationIBTN = (ImageButton) findViewById(R.id.emergencyIBTN);
         complaintIBTN = (ImageButton) findViewById(R.id.complaintIBTN);
         logout = (Button) findViewById(R.id.logoutBTN);
@@ -76,8 +73,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                // t.setText(location.getLongitude() + " " + location.getLatitude());
                 latitude = location.getLatitude();
                 longitude = location.getLongitude();
-                String address = getCompleteAddressString(latitude, longitude);
-                Toast.makeText(getApplicationContext(),address,Toast.LENGTH_SHORT).show();
+                 address = getCompleteAddressString(latitude, longitude);
+                //Toast.makeText(getApplicationContext(),address,Toast.LENGTH_SHORT).show();
                // kk.setText(address);
 
 
@@ -112,6 +109,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }else{
                 //if we have permissions already..if not not ask for permission result
                 locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, listener);
+                Location lastKnownLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+
             }
         }
 
@@ -145,25 +144,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-   public void configure_button() {
-//        // first check for permissions
-//       //if API <23, no need of permissions
-//       if(Build.VERSION.SDK_INT < 23){
-//           locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, listener);
-//       }else{
-//
-//           if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED){
-//               // if no permission -> ask for permission
-//               ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION},1);
-//           }else{
-//               //if we have permissions already..if not not ask for permission result
-//               locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, listener);
-//           }
-//       }
 
-       // this code won't execute IF permissions are not allowed, because in the line above there is return statement.
-
-    }
 
     @Override
     public void onClick(View view) {
@@ -187,7 +168,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 String subject = getCompleteAddressString(latitude, longitude);
 
-                sendEmail(latitude, longitude, subject);
+                sendEmail(latitude, longitude, address);
 
                 break;
 
@@ -227,6 +208,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void sendEmail(double latitude, double longitude, String subject) {
 
         String sub = subject;
+        //sub.concat("\n\n My 919 ID: "+ intent.getStringExtra("919"));
         String body = "http://www.google.com/maps/place/" + String.valueOf(latitude) + "," + String.valueOf(longitude);
 
         SendMail sm = new SendMail(this, "makkenasrinivasarao1@gmail.com", sub, sub + "\n" + body);

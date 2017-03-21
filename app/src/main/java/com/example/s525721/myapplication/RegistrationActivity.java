@@ -10,11 +10,13 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.parse.Parse;
@@ -24,7 +26,7 @@ import com.parse.ParseUser;
 import com.parse.SignUpCallback;
 
 
-public class RegistrationActivity extends AppCompatActivity {
+public class RegistrationActivity extends AppCompatActivity implements View.OnClickListener{
     EditText name, email, password, confirmPassword, user919;
     Boolean success = true;
     ImageButton policy;
@@ -124,20 +126,6 @@ password.setOnTouchListener(new View.OnTouchListener() {
         return true;
     }
 });
-//        name = (EditText)findViewById(editText2) ;
-//        email = (EditText)findViewById(editText3) ;
-//        password = (EditText)findViewById(editText4) ;
-//        confirmPassword =  (EditText)findViewById(editText6) ;
-//        address = (EditText)findViewById(editText5) ;
-
-//        Parse.initialize(new Parse.Configuration.Builder(this)
-//                .applicationId("81HoKnauaDlvgFHGRd7hBCNrjEt4V70MOSHW4F0w")
-//                .clientKey("BrXxoHxS4BCALYGmO0QyOxvz3QB9j26SLGFTfZx5")
-//                .server("https://parseapi.back4app.com") // The trailing slash is important.
-//
-//
-//                .build()
-//        );
 
         //reset button
         Button reset = (Button) findViewById(R.id.buttonR);
@@ -170,8 +158,13 @@ password.setOnTouchListener(new View.OnTouchListener() {
                     Toast.makeText(getApplicationContext(), "Row not inserted", Toast.LENGTH_SHORT).show();
 
                 }
-            }
-        });
+    }
+});
+
+
+        RelativeLayout regRelative = (RelativeLayout) findViewById(R.id.activity_registration);
+        regRelative.setOnClickListener(this);
+
     }
 //pop Over
 
@@ -289,4 +282,11 @@ password.setOnTouchListener(new View.OnTouchListener() {
         return success;
     }
 
+    @Override
+    public void onClick(View view) {
+        if (view.getId() == R.id.activity_registration  ){
+            InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+            inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),0);
+        }
+    }
 }

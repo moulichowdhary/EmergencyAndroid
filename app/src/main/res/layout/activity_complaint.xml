@@ -58,7 +58,8 @@
         android:layout_toEndOf="@+id/submitReportBTN"
         android:background="@drawable/round_small_blue"
         android:layout_marginBottom="59dp"
-        android:textColor="#ff3"/>
+        android:textColor="#ff3"
+        android:onClick="uploadPhoto" />
 
     <Button
         android:layout_width="wrap_content"

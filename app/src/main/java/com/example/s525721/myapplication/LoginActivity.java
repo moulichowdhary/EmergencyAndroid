@@ -6,9 +6,13 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.parse.LogInCallback;
@@ -27,9 +31,9 @@ import com.parse.ParseUser;
 
 import java.util.List;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
     private EditText userID, Password;
-    private Button button4, rigisterBTN;
+    private Button button4, rigisterBTN,forgotPasswordBTN;
 
     SharedPreferences sharedpreferences;
     SharedPreferences.Editor editor;
@@ -40,6 +44,9 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        RelativeLayout relativeLayout = (RelativeLayout) findViewById(R.id.activity_login);
+        relativeLayout.setOnClickListener(this);
+
         session = new SessionManager(this);
         sharedpreferences = getSharedPreferences("Prefs", Context.MODE_PRIVATE);
         editor = sharedpreferences.edit();
@@ -54,7 +61,17 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+//forgot password button
 
+
+        forgotPasswordBTN = (Button) findViewById(R.id.forgotBTN);
+        forgotPasswordBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LoginActivity.this,ForgotPasswordActivity.class);
+                startActivity(intent);
+            }
+        });
         //log in button
         button4 = (Button) findViewById(R.id.button4);
 
@@ -95,6 +112,7 @@ public class LoginActivity extends AppCompatActivity {
                            session.createLoginSession(user919ID,password);
 
                             Intent i = new Intent(getApplicationContext(), MainActivity.class);
+                            i.putExtra("919",sharedpreferences.getString("919Key",""));
 
                             startActivity(i);
                             finish();
@@ -112,6 +130,18 @@ public class LoginActivity extends AppCompatActivity {
             }
             }
         });
+    }
+
+
+//hides keyboard when click on background layout
+    @Override
+    public void onClick(View view) {
+
+        TextView login = (TextView) findViewById(R.id.loginLBL);
+            if (view.getId() == R.id.activity_login || view.getId() == R.id.register || view.getId() == R.id.loginLBL){
+                InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+                inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),0);
+            }
     }
 }
 
