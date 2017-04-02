@@ -34,9 +34,9 @@ import java.util.Locale;
 
 
 public class ComplaintActivity extends AppCompatActivity {
-    private static final int TAKE_PIC_REQUEST_CODE = 0;
-    private static final int CHOOSE_PIC_REQUEST_CODE = 1;
-    public static final int MEDIA_TYPE_IMAGE = 2;
+//    private static final int TAKE_PIC_REQUEST_CODE = 0;
+//    private static final int CHOOSE_PIC_REQUEST_CODE = 1;
+//    public static final int MEDIA_TYPE_IMAGE = 2;
 
     private EditText data;
     private Button submitReport,emergencyContacts;
@@ -45,7 +45,7 @@ public class ComplaintActivity extends AppCompatActivity {
     private Uri mMediaUri;
 
 
-   public void uploadPhoto(View view){
+  /* public void uploadPhoto(View view){
        AlertDialog.Builder builder = new AlertDialog.Builder (ComplaintActivity.this);
        builder.setTitle("Upload or Take Photo");
        builder.setPositiveButton("Upload", new DialogInterface.OnClickListener() {
@@ -80,8 +80,9 @@ public class ComplaintActivity extends AppCompatActivity {
        });
        AlertDialog dialog = builder.create();
        dialog.show();
-   }
+   }*/
     //inner helper method
+    /*
     private Uri getOutputMediaFileUri(int mediaTypeImage) {
 
         if(isExternalStorageAvailable()){
@@ -115,7 +116,8 @@ public class ComplaintActivity extends AppCompatActivity {
             return null;
         }
 
-    }
+    }*/
+    /*
     //check if external storage is mounted. helper method
     private boolean isExternalStorageAvailable(){
         String state = Environment.getExternalStorageState();
@@ -124,7 +126,7 @@ public class ComplaintActivity extends AppCompatActivity {
         }else{
             return false;
         }
-    }
+    }*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -239,7 +241,7 @@ sendEmail();
 
     }
 
-    @Override
+   /* @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(resultCode == RESULT_OK){
@@ -267,7 +269,7 @@ sendEmail();
         }
     }
 
-
+*/
 
 
 

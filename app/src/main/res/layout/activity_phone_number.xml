@@ -14,8 +14,9 @@
         android:stretchColumns="*">
 <TableLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_marginTop="100dp">
+    android:layout_height="wrap_content"
+    android:layout_marginTop="100dp"
+    android:paddingBottom="80dp">
     <TableRow>
         <TextView
             android:text="Emergency Contacts"
@@ -31,30 +32,36 @@
     <TableRow>
         <TextView
             android:text="University Police"
-            android:padding="3dip" />
+            android:padding="3dip"
+            android:textColor="#000"/>
         <TextView
             android:text="660-562-1254 or 911"
             android:gravity="left"
-            android:padding="3dip" />
+            android:padding="3dip"
+            android:textColor="#000"/>
     </TableRow>
 
     <TableRow>
     <TextView
         android:text="Maryville Police and Fire"
-        android:padding="3dip" />
+        android:padding="3dip"
+        android:textColor="#000"/>
     <TextView
         android:text="660-562-3209"
         android:gravity="left"
-        android:padding="3dip" />
+        android:padding="3dip"
+        android:textColor="#000"/>
     </TableRow>
     <TableRow>
         <TextView
             android:text="Missouri Highway Patrol"
-            android:padding="3dip" />
+            android:padding="3dip"
+            android:textColor="#000"/>
         <TextView
             android:text="*55"
             android:gravity="left"
-            android:padding="3dip" />
+            android:padding="3dip"
+            android:textColor="#000"/>
     </TableRow>
 
     <TableRow>
@@ -72,11 +79,13 @@
     <TableRow>
         <TextView
             android:text="Nat'l Drug and Alochol Treatment"
-            android:padding="3dip" />
+            android:padding="3dip"
+            android:textColor="#000"/>
         <TextView
             android:text="1-800-662-4357"
             android:gravity="left"
-            android:padding="3dip" />
+            android:padding="3dip"
+            android:textColor="#000"/>
     </TableRow>
 
     <TableRow>
@@ -94,71 +103,86 @@
     <TableRow>
         <TextView
             android:text="Child abuse hotline"
-            android:padding="3dip" />
+            android:padding="3dip"
+            android:textColor="#000"/>
         <TextView
             android:text="1-800-392-3738"
             android:gravity="left"
-            android:padding="3dip" />
+            android:padding="3dip"
+            android:textColor="#000"/>
     </TableRow>
 
     <TableRow>
         <TextView
             android:text="NWMSU Title IX"
-            android:padding="3dip" />
+            android:padding="3dip"
+            android:textColor="#000"
+            />
         <TextView
             android:text="660-562-1013"
             android:gravity="left"
-            android:padding="3dip" />
+            android:padding="3dip"
+            android:textColor="#000"/>
     </TableRow>
 
     <TableRow>
         <TextView
             android:text="SSM St. Francis Health Services"
-            android:padding="3dip" />
+            android:padding="3dip"
+            android:textColor="#000"/>
         <TextView
             android:text="660-562-7922"
             android:gravity="left"
-            android:padding="3dip" />
+            android:padding="3dip"
+            android:textColor="#000"/>
     </TableRow>
 
     <TableRow>
         <TextView
             android:text="Child and Family Center"
-            android:padding="3dip" />
+            android:padding="3dip"
+            android:textColor="#000"/>
         <TextView
             android:text="660-562-2320"
             android:gravity="left"
-            android:padding="3dip" />
+            android:padding="3dip"
+            android:textColor="#000"/>
     </TableRow>
 
     <TableRow>
         <TextView
             android:text="Sexual Assault Hotline"
-            android:padding="3dip" />
+            android:padding="3dip"
+            android:textColor="#000"/>
         <TextView
             android:text="660-562-1972"
             android:gravity="left"
-            android:padding="3dip" />
+            android:padding="3dip"
+            android:textColor="#000"/>
     </TableRow>
 
     <TableRow>
         <TextView
             android:text="National Domestic Violence Hotline"
-            android:padding="3dip" />
+            android:padding="3dip"
+            android:textColor="#000"/>
         <TextView
             android:text="1-800-799-7233"
             android:gravity="left"
-            android:padding="3dip" />
+            android:padding="3dip"
+            android:textColor="#000"/>
     </TableRow>
 
     <TableRow>
         <TextView
             android:text="National Sexual Assault Hotline"
-            android:padding="3dip" />
+            android:padding="3dip"
+            android:textColor="#000"/>
         <TextView
             android:text="1-800-656-4673"
             android:gravity="left"
-            android:padding="3dip" />
+            android:padding="3dip"
+            android:textColor="#000"/>
     </TableRow>
 
     <TableRow>
@@ -175,21 +199,25 @@
         <TableRow>
             <TextView
                 android:text="SSM St. Francis Hospital"
-                android:padding="3dip" />
+                android:padding="3dip"
+                android:textColor="#000"/>
             <TextView
                 android:text="660-562-2600"
                 android:gravity="left"
-                android:padding="3dip" />
+                android:padding="3dip"
+                android:textColor="#000"/>
         </TableRow>
 
     <TableRow>
         <TextView
             android:text="Northwest Wellness Center"
-            android:padding="3dip" />
+            android:padding="3dip"
+            android:textColor="#000"/>
         <TextView
             android:text="660-562-1348"
             android:gravity="left"
-            android:padding="3dip" />
+            android:padding="3dip"
+            android:textColor="#000"/>
     </TableRow>
 
     <TableRow>
@@ -206,61 +234,73 @@
     <TableRow>
         <TextView
             android:text="Mental Health Crisis Line"
-            android:padding="3dip" />
+            android:padding="3dip"
+            android:textColor="#000"/>
         <TextView
             android:text="1-888-279-8188"
             android:gravity="left"
-            android:padding="3dip" />
+            android:padding="3dip"
+            android:textColor="#000"/>
     </TableRow>
 
     <TableRow>
         <TextView
             android:text="Synergy 24 hour youth crisis line"
-            android:padding="3dip" />
+            android:padding="3dip"
+            android:textColor="#000"/>
         <TextView
             android:text="1-888-233-1639"
             android:gravity="left"
-            android:padding="3dip" />
+            android:padding="3dip"
+            android:textColor="#000"/>
     </TableRow>
 
     <TableRow>
         <TextView
             android:text="Nat'l Suicide Prevention Hotline"
-            android:padding="3dip" />
+            android:padding="3dip"
+            android:textColor="#000"/>
         <TextView
             android:text="1-800-273-8255"
             android:gravity="left"
-            android:padding="3dip" />
+            android:padding="3dip"
+            android:textColor="#000"/>
     </TableRow>
 
     <TableRow>
         <TextView
             android:text="SSM St. Francis Mental Health"
-            android:padding="3dip" />
+            android:padding="3dip"
+            android:textColor="#000"/>
         <TextView
             android:text="660-562-2227"
             android:gravity="left"
-            android:padding="3dip" />
+            android:padding="3dip"
+            android:textColor="#000"/>
     </TableRow>
 
     <TableRow>
         <TextView
             android:text="University Police"
-            android:padding="3dip" />
+            android:padding="3dip"
+            android:textColor="#000"/>
         <TextView
             android:text="660-562-1254"
             android:gravity="left"
-            android:padding="3dip" />
+            android:padding="3dip"
+            android:textColor="#000"/>
     </TableRow>
 
     <TableRow>
         <TextView
             android:text="Wellness Services"
-            android:padding="3dip" />
+            android:padding="3dip"
+            android:textColor="#000"/>
         <TextView
             android:text="660-562-1348"
             android:gravity="left"
-            android:padding="3dip" />
+            android:padding="3dip"
+            android:textColor="#000"/>
     </TableRow>
 
 </TableLayout>

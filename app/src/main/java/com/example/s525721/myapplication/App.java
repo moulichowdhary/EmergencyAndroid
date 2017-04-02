@@ -3,6 +3,7 @@ package com.example.s525721.myapplication;
 import android.app.Application;
 
 import com.parse.Parse;
+import com.parse.ParseObject;
 
 /**
  * Created by S525894 on 11/23/2016.
@@ -22,6 +23,8 @@ public class App extends Application {
                 .build()
                 //COmmit with this project
         );
+
+
 
     }
 }

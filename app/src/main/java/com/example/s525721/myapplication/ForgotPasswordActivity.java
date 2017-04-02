@@ -33,7 +33,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
         update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ParseQuery<ParseUser> query = ParseQuery.getUserQuery();
+                ParseQuery<ParseUser> query = ParseUser.getQuery();
                 query.whereEqualTo("username",Username.getText().toString());
                 query.setLimit(1);
 

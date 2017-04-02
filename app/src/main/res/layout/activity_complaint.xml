@@ -36,7 +36,7 @@
         android:layout_above="@+id/uploadImageBTN"
         android:layout_alignParentStart="true" />
 </ScrollView>
-    <Button
+   <!-- <Button
         android:text="Take PHOTO"
         android:layout_width="100dp"
         android:layout_height="100dp"
@@ -59,17 +59,17 @@
         android:background="@drawable/round_small_blue"
         android:layout_marginBottom="59dp"
         android:textColor="#ff3"
-        android:onClick="uploadPhoto" />
+        android:onClick="uploadPhoto" />-->
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/conatactsBTN"
         tools:text="Emergency Phone numbers?"
-        android:layout_below="@+id/takePhotobutton"
+        android:layout_below="@+id/submitReportBTN"
         android:layout_centerHorizontal="true"
         android:background="@drawable/circle_side"
-        android:textColor="#ff3347"
+        android:textColor="#0930f1"
         android:text="Emergency Phone numbers?" />
 
 
@@ -80,7 +80,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="52dp"
         android:id="@+id/submitReportBTN"
-        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/scrollMultiText"
         android:layout_centerHorizontal="true"
         android:textColor="#fff"
         android:background="#000"/>
