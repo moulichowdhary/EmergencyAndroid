@@ -206,6 +206,7 @@ password.setOnTouchListener(new View.OnTouchListener() {
         //user.setUsername(nameOfUser);
         user.setPassword(pass);
         user.setEmail(eMail);
+
 //Validations
 
         //email validation

@@ -25,6 +25,8 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.parse.ParseUser;
+
 import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
@@ -34,13 +36,14 @@ import static com.example.s525721.myapplication.R.id.logoutBTN;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
      ImageButton locationIBTN,complaintIBTN;
      Button logout;
-TextView name ;
+    TextView name ;
     private LocationManager locationManager;
     private LocationListener listener;
     private double latitude;
     private double longitude;
     String address;
     SessionManager session;
+    Intent i;
 
     Intent intent;
 
@@ -48,62 +51,75 @@ TextView name ;
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        session = new SessionManager(this);
 
-        session.checkLogin();
-        locationIBTN = (ImageButton) findViewById(R.id.emergencyIBTN);
-        complaintIBTN = (ImageButton) findViewById(R.id.complaintIBTN);
-        logout = (Button) findViewById(R.id.logoutBTN);
+        ParseUser currentUser = ParseUser.getCurrentUser();
+        if (currentUser == null) {
+            Intent mainIntent = new Intent(MainActivity.this, LoginActivity.class);
+            startActivity(mainIntent);
+        } else{
+            // show the signup or login screen
 
 
-        locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+            i = getIntent();
 
-        //configure_button();
-        listener = new LocationListener() {
-            @Override
-            public void onLocationChanged(Location location) {
-                latitude = location.getLatitude();
-                longitude = location.getLongitude();
-                address = getCompleteAddressString(latitude, longitude);
-            }
 
-            @Override
-            public void onStatusChanged(String s, int i, Bundle bundle) {
+            session = new SessionManager(this);
 
-            }
+            session.checkLogin();
+            locationIBTN = (ImageButton) findViewById(R.id.emergencyIBTN);
+            complaintIBTN = (ImageButton) findViewById(R.id.complaintIBTN);
+            logout = (Button) findViewById(R.id.logoutBTN);
 
-            @Override
-            public void onProviderEnabled(String s) {
 
-            }
+            locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
 
-            @Override
-            public void onProviderDisabled(String s) {
+            //configure_button();
+            listener = new LocationListener() {
+                @Override
+                public void onLocationChanged(Location location) {
+                    latitude = location.getLatitude();
+                    longitude = location.getLongitude();
+                    address = getCompleteAddressString(latitude, longitude);
+                }
 
-                Intent i = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-                startActivity(i);
-            }
-        };
+                @Override
+                public void onStatusChanged(String s, int i, Bundle bundle) {
+
+                }
+
+                @Override
+                public void onProviderEnabled(String s) {
+
+                }
+
+                @Override
+                public void onProviderDisabled(String s) {
+
+                    Intent i = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                    startActivity(i);
+                }
+            };
 // first check for permissions
-        //if API <23, no need of permissions
-        if(Build.VERSION.SDK_INT < 23){
-            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, listener);
-        }else{
-
-            if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED){
-                // if no permission -> ask for permission
-                ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION},1);
-            }else{
-                //if we have permissions already..if not not ask for permission result
+            //if API <23, no need of permissions
+            if (Build.VERSION.SDK_INT < 23) {
                 locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, listener);
-                Location lastKnownLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+            } else {
 
+                if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                    // if no permission -> ask for permission
+                    ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+                } else {
+                    //if we have permissions already..if not not ask for permission result
+                    locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, listener);
+                    Location lastKnownLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+
+                }
             }
-        }
 
-        complaintIBTN.setOnClickListener(this);
-        logout.setOnClickListener(this);
-        locationIBTN.setOnClickListener(this);
+            complaintIBTN.setOnClickListener(this);
+            logout.setOnClickListener(this);
+            locationIBTN.setOnClickListener(this);
+        }
     }
 
     @Override
@@ -194,11 +210,15 @@ TextView name ;
 
     protected void sendEmail(double latitude, double longitude, String subject) {
 
+
+
+
         String sub = subject;
         //sub.concat("\n\n My 919 ID: "+ intent.getStringExtra("919"));
         String body = "http://www.google.com/maps/place/" + String.valueOf(latitude) + "," + String.valueOf(longitude);
 
-        SendMail sm = new SendMail(this, "makkenasrinivasarao1@gmail.com", sub, sub + "\n" + body);
+        String user919 = i.getStringExtra("919");
+        SendMail sm = new SendMail(this, "makkenasrinivasarao1@gmail.com", user919+ "\n" + sub, sub + "\n" + body);
         sm.execute();
 
 

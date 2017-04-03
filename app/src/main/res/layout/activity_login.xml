@@ -78,7 +78,7 @@
     <Button
         android:text="register here"
         android:layout_width="180dp"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
         android:textColor="#000000"
         android:background="@drawable/circle_side"
         android:id="@+id/register"
@@ -88,12 +88,13 @@
 
     <Button
         android:text="Forgot password?"
-        android:layout_width="wrap_content"
+        android:layout_width="180dp"
         android:layout_height="wrap_content"
         android:id="@+id/forgotBTN"
         android:background="@drawable/circle_side"
-        android:layout_below="@+id/button4"
+
+        android:layout_below="@+id/register"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="44dp" />
+        android:layout_marginTop="21dp" />
 
 </RelativeLayout>

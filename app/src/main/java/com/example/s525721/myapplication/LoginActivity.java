@@ -47,90 +47,91 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         RelativeLayout relativeLayout = (RelativeLayout) findViewById(R.id.activity_login);
         relativeLayout.setOnClickListener(this);
 
-        session = new SessionManager(this);
-        sharedpreferences = getSharedPreferences("Prefs", Context.MODE_PRIVATE);
-        editor = sharedpreferences.edit();
 
 
-        rigisterBTN = (Button) findViewById(R.id.register);
-        rigisterBTN.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(getApplicationContext(), RegistrationActivity.class);
 
-                startActivity(i);
-            }
-        });
+            session = new SessionManager(this);
+            sharedpreferences = getSharedPreferences("Prefs", Context.MODE_PRIVATE);
+            editor = sharedpreferences.edit();
+
+
+            rigisterBTN = (Button) findViewById(R.id.register);
+            rigisterBTN.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent i = new Intent(getApplicationContext(), RegistrationActivity.class);
+
+                    startActivity(i);
+                }
+            });
 //forgot password button
 
 
-        forgotPasswordBTN = (Button) findViewById(R.id.forgotBTN);
-        forgotPasswordBTN.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(LoginActivity.this,ForgotPasswordActivity.class);
-                startActivity(intent);
-            }
-        });
-        //log in button
-        button4 = (Button) findViewById(R.id.button4);
+            forgotPasswordBTN = (Button) findViewById(R.id.forgotBTN);
+            forgotPasswordBTN.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(LoginActivity.this, ForgotPasswordActivity.class);
+                    startActivity(intent);
+                }
+            });
 
 
-        button4.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
+            //log in button
+            button4 = (Button) findViewById(R.id.button4);
 
 
-
-                userID = (EditText) findViewById(R.id.editText);
-                Password = (EditText) findViewById(R.id.editText7);
-
-                final String user919ID = userID.getText().toString();
+            button4.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View view) {
 
 
-                final String password = Password.getText().toString();
-               // String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+                    userID = (EditText) findViewById(R.id.editText);
+                    Password = (EditText) findViewById(R.id.editText7);
+
+                    final String user919ID = userID.getText().toString();
 
 
+                    final String password = Password.getText().toString();
+                    // String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
 
 
-
-                 if (user919ID.isEmpty() ) {
-                    Toast.makeText(getApplicationContext(), "Invalid id ", Toast.LENGTH_SHORT).show();
+                    if (user919ID.isEmpty()) {
+                        Toast.makeText(getApplicationContext(), "Invalid id ", Toast.LENGTH_SHORT).show();
 //                    success = false;
-                } else if (password.isEmpty()) {
-                     Toast.makeText(getApplicationContext(), "Please enter password", Toast.LENGTH_SHORT).show();
+                    } else if (password.isEmpty()) {
+                        Toast.makeText(getApplicationContext(), "Please enter password", Toast.LENGTH_SHORT).show();
 //                    success = false;
-                 }else{
-                ParseUser.logInInBackground(user919ID, password, new LogInCallback() {
+                    } else {
+                        ParseUser.logInInBackground(user919ID, password, new LogInCallback() {
 
-                    @Override
-                    public void done(ParseUser user, ParseException e) {
+                            @Override
+                            public void done(ParseUser user, ParseException e) {
 
 
-                        if (e == null) {
+                                if (e == null) {
 
-                           session.createLoginSession(user919ID,password);
+                                    session.createLoginSession(user919ID, password);
 
-                            Intent i = new Intent(getApplicationContext(), MainActivity.class);
-                            i.putExtra("919",sharedpreferences.getString("919Key",""));
+                                    Intent i = new Intent(getApplicationContext(), MainActivity.class);
+                                    i.putExtra("919", userID.getText().toString());
 
-                            startActivity(i);
-                            finish();
-                            Log.i(sharedpreferences.getString("passKey",""),"Good ");
-                            System.out.print(sharedpreferences.getBoolean(
-                                    "IS_Login",true));
-                            Toast.makeText(getApplicationContext(),sharedpreferences.getBoolean("IS_Login", false)+"", Toast.LENGTH_SHORT).show();
+                                    startActivity(i);
+                                    finish();
+                                    Log.i(sharedpreferences.getString("passKey", ""), "Good ");
+                                    System.out.print(sharedpreferences.getBoolean(
+                                            "IS_Login", true));
+                                    Toast.makeText(getApplicationContext(), sharedpreferences.getBoolean("IS_Login", false) + "", Toast.LENGTH_SHORT).show();
 
-                        }else{
-                            Toast.makeText(getApplicationContext(), "No such user exist", Toast.LENGTH_LONG).show();
-                        }
+                                } else {
+                                    Toast.makeText(getApplicationContext(), "No such user exist", Toast.LENGTH_LONG).show();
+                                }
 
+                            }
+                        });
                     }
-                });
-            }
-            }
-        });
-    }
+                }
+            });
+        }
 
 
 //hides keyboard when click on background layout
