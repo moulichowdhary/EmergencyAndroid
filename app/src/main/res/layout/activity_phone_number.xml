@@ -35,7 +35,7 @@
             android:padding="3dip"
             android:textColor="#000"/>
         <TextView
-            android:text="660-562-1254 or 911"
+            android:text="660-562-1254 / 911"
             android:gravity="left"
             android:padding="3dip"
             android:textColor="#000"/>

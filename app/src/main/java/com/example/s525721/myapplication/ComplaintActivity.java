@@ -1,10 +1,21 @@
 package com.example.s525721.myapplication;
 
+import android.Manifest;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.provider.Settings;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -45,88 +56,36 @@ public class ComplaintActivity extends AppCompatActivity {
     private Uri mMediaUri;
 
 
-  /* public void uploadPhoto(View view){
-       AlertDialog.Builder builder = new AlertDialog.Builder (ComplaintActivity.this);
-       builder.setTitle("Upload or Take Photo");
-       builder.setPositiveButton("Upload", new DialogInterface.OnClickListener() {
+    private LocationManager locationManager;
+    private LocationListener listener;
 
-           @Override
-           public void onClick(DialogInterface dialogInterface, int i) {
-               //upload image
-               Intent choosePictureIntent = new Intent(Intent.ACTION_GET_CONTENT);
-               choosePictureIntent.setType("image/*");
-               startActivityForResult(choosePictureIntent, CHOOSE_PIC_REQUEST_CODE);
+    private double latitude;
+    private double longitude;
 
-           }
-       });
-       builder.setNegativeButton("Take Photo", new DialogInterface.OnClickListener() {
-           @Override
-           public void onClick(DialogInterface dialogInterface, int i) {
-               //take picture
-               Intent takePicture = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-               mMediaUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE);
 
-               if (mMediaUri == null){
-                   //display error
-                   Toast.makeText(ComplaintActivity.this, "Sorry!! There was an error, Try Again", Toast.LENGTH_SHORT).show();
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        //request code --> 1
+        //permissions array , we do haVE ONLY ONE PERMISSION
+        //PERMISSION RESULT
 
-               }else{
-                   takePicture.putExtra(MediaStore.EXTRA_OUTPUT,mMediaUri);
-                   startActivityForResult(takePicture,TAKE_PIC_REQUEST_CODE);
-
-               }
-
-           }
-       });
-       AlertDialog dialog = builder.create();
-       dialog.show();
-   }*/
-    //inner helper method
-    /*
-    private Uri getOutputMediaFileUri(int mediaTypeImage) {
-
-        if(isExternalStorageAvailable()){
-            //get the URI
-            //get external storage dir
-            File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "UPLOADIMAGES");
-            //create subdirectore if it does not exist
-            if(!mediaStorageDir.exists()){
-                //create dir
-                if(! mediaStorageDir.mkdirs()){
-
-                    return null;
-                }
+        if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED ) {
+                // TODO: Consider calling
+                //    ActivityCompat#requestPermissions
+                // here to request the missing permissions, and then overriding
+                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                //                                          int[] grantResults)
+                // to handle the case where the user grants the permission. See the documentation
+                // for ActivityCompat#requestPermissions for more details.
+                locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, listener);
+            }else{
+                return;
             }
-            //create a file name
-            //create file
-            File mediaFile = null;
-            Date now = new Date();
-            String timestamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US).format(now);
 
-            String path = mediaStorageDir.getPath() + File.separator;
-            if(mediaTypeImage == MEDIA_TYPE_IMAGE){
-                mediaFile = new File(path + "IMG_" + timestamp + ".jpg");
-            }
-            //return file uri
-
-
-            return Uri.fromFile(mediaFile);
-        }else {
-
-            return null;
         }
 
-    }*/
-    /*
-    //check if external storage is mounted. helper method
-    private boolean isExternalStorageAvailable(){
-        String state = Environment.getExternalStorageState();
-        if(state.equals(Environment.MEDIA_MOUNTED)){
-            return true;
-        }else{
-            return false;
-        }
-    }*/
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -134,23 +93,24 @@ public class ComplaintActivity extends AppCompatActivity {
         setContentView(R.layout.activity_complaint);
         data = (EditText) findViewById(R.id.complaintData);
         submitReport = (Button) findViewById(R.id.submitReportBTN);
-        emergencyContacts = (Button)findViewById(R.id.conatactsBTN);
-        dropDownComplaintType =(Spinner) findViewById(R.id.complaintTypeSpinner);
+        emergencyContacts = (Button) findViewById(R.id.conatactsBTN);
+        dropDownComplaintType = (Spinner) findViewById(R.id.complaintTypeSpinner);
 
         RelativeLayout relativeLayout = (RelativeLayout) findViewById(R.id.activity_complaint);
         relativeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
-                inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),0);
+                inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
             }
         });
 
-       //Spinner code, adding emergency types to dropdown
+        //Spinner code, adding emergency types to dropdown
         List<String> list = new ArrayList<String>();
         list.add("Choose complaint Type");
         list.add("Fire Emergency");
         list.add("Health Emergency");
+        list.add("Founded Suspicious Activity or Person");
         list.add("Other");
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, list);
@@ -158,33 +118,98 @@ public class ComplaintActivity extends AppCompatActivity {
         dropDownComplaintType.setAdapter(dataAdapter);
 
 
+        //Log.d("Enter to fileComplaint", "Success");
 
-        Log.d("Enter to fileComplaint","Success");
-        submitReport.setOnClickListener(new View.OnClickListener() {
 
-            @Override
-            public void onClick(View view) {
-sendEmail();
-                Log.d("Enter to fileComplaint","Success1");
-                if (fileComplaint()==true){
-                    //sendMailWithReport.sendEmail(sendMailWithReport.getLatitude(),sendMailWithReport.getLongitude());
-                    Toast.makeText(getApplicationContext(), "Success- report added", Toast.LENGTH_SHORT);
 
-                }else{
-                    Toast.makeText(getApplicationContext(), "Fail - Report not added", Toast.LENGTH_SHORT);
-                }
-            }
-        });
+                submitReport.setOnClickListener(new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View view) {
+                        if (dropDownComplaintType.getSelectedItem() == "Choose complaint Type") {
+
+                            Toast.makeText(ComplaintActivity.this, "Please Choose Specific Complaint", Toast.LENGTH_SHORT).show();
+
+                        } else if (data.getText().toString().isEmpty() || data.getText().toString() == "") {
+
+                            Toast.makeText(ComplaintActivity.this, "Please Enter Comlaint data", Toast.LENGTH_SHORT).show();
+
+                        } else {
+                            sendEmail();
+                            //Log.d("Enter to fileComplaint", "Success1");
+                            if (fileComplaint() == true) {
+                                //sendMailWithReport.sendEmail(sendMailWithReport.getLatitude(),sendMailWithReport.getLongitude());
+                                Toast.makeText(getApplicationContext(), "Success- report added", Toast.LENGTH_SHORT);
+
+                            } else {
+                                Toast.makeText(getApplicationContext(), "Fail - Report not added", Toast.LENGTH_SHORT);
+                            }
+                        }
+                    }
+                });
+
+
+
+
 
         emergencyContacts.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent contacts = new Intent(getApplicationContext(),PhoneNumber.class);
-                startActivity(contacts);
-            }
-        });
+                @Override
+                public void onClick(View view) {
+                    Intent contacts = new Intent(getApplicationContext(), PhoneNumber.class);
+                    startActivity(contacts);
+                }
+            });
 
-    }
+
+//Getting location
+
+
+        locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+
+        listener = new LocationListener() {
+            @Override
+            public void onLocationChanged(Location location) {
+                latitude = location.getLatitude();
+                longitude = location.getLongitude();
+
+            }
+
+            @Override
+            public void onStatusChanged(String s, int i, Bundle bundle) {
+
+            }
+
+            @Override
+            public void onProviderEnabled(String s) {
+
+            }
+
+            @Override
+            public void onProviderDisabled(String s) {
+
+                Intent i = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                startActivity(i);
+            }
+        };
+
+        if(Build.VERSION.SDK_INT < 23){
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, listener);
+        }else{
+
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED){
+                // if no permission -> ask for permission
+                ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION},1);
+            }else{
+                //if we have permissions already..if not not ask for permission result
+                locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, listener);
+                Location lastKnownLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+
+            }
+        }
+
+
+        }
+
 //    public void sendEmail(double latitude, double longitude) {
 //
 //        String sub = sendMailWithReport.getCompleteAddressString(latitude, longitude);
@@ -232,46 +257,14 @@ sendEmail();
     }
 
 
-
     protected void sendEmail( ) {
+        String body = "http://www.google.com/maps/place/" + String.valueOf(latitude) + "," + String.valueOf(longitude);
 
- SendMail sm = new SendMail(this, "makkenasrinivasarao1@gmail.com", dropDownComplaintType.getSelectedItem().toString(),  data.getText().toString() + "\n" +  data.getText().toString());
+        SendMail sm = new SendMail(this, "makkenasrinivasarao1@gmail.com", dropDownComplaintType.getSelectedItem().toString(),  data.getText().toString() + "\n" +body  );
         sm.execute();
 
 
     }
-
-   /* @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if(resultCode == RESULT_OK){
-            if(requestCode == CHOOSE_PIC_REQUEST_CODE){
-                if(data == null){
-                    Toast.makeText(getApplicationContext(), "Image cannot be null!", Toast.LENGTH_LONG).show();
-                }else{
-                    mMediaUri = data.getData();
-                    //set previews
-                    //mPreviewImageView.setImageURI(mMediaUri);
-                }
-            }else {
-
-                Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
-                mediaScanIntent.setData(mMediaUri);
-                sendBroadcast(mediaScanIntent);
-                //set previews
-
-               // mPreviewImageView.setImageURI(mMediaUri);
-
-            }
-
-        }else if(resultCode != RESULT_CANCELED){
-            Toast.makeText(getApplicationContext(), "Cancelled!", Toast.LENGTH_LONG).show();
-        }
-    }
-
-*/
-
-
 
 
 }

@@ -57,7 +57,7 @@ public void popCancel(View view){
         password = password.trim();
         int len = password.length();
         if (len < MIN_PASSWORD_LENGTH || len > MAX_PASSWORD_LENGTH) {
-            toast("wrong size, it must have at least 8 characters and less than 20.");
+           // toast("wrong size, it must have at least 8 characters and less than 20.");
             success = false;
         } else {
             char[] aC = password.toCharArray();

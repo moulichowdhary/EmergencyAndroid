@@ -51,18 +51,10 @@ TextView name ;
         session = new SessionManager(this);
 
         session.checkLogin();
-        // t = (TextView) findViewById(R.id.textView2);
-        //intent = getIntent();
-        //name = (TextView) findViewById(R.id.nameTV);
-        //SharedPreferences myPrefs = getSharedPreferences("Prefs", MODE_PRIVATE);  //Activity1.class
-        //String _919id = myPrefs.getString("919Key","");
-       // name.setText("Hello, " + _919id);
         locationIBTN = (ImageButton) findViewById(R.id.emergencyIBTN);
         complaintIBTN = (ImageButton) findViewById(R.id.complaintIBTN);
         logout = (Button) findViewById(R.id.logoutBTN);
-//        t = (TextView) findViewById(R.id.textView2);
-//        b = (Button) findViewById(R.id.locationBTN);
-//        kk = (TextView) findViewById(R.id.textView3);
+
 
         locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
 
@@ -70,14 +62,9 @@ TextView name ;
         listener = new LocationListener() {
             @Override
             public void onLocationChanged(Location location) {
-               // t.setText(location.getLongitude() + " " + location.getLatitude());
                 latitude = location.getLatitude();
                 longitude = location.getLongitude();
-                 address = getCompleteAddressString(latitude, longitude);
-                //Toast.makeText(getApplicationContext(),address,Toast.LENGTH_SHORT).show();
-               // kk.setText(address);
-
-
+                address = getCompleteAddressString(latitude, longitude);
             }
 
             @Override
