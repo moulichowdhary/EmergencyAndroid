@@ -53,19 +53,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         ParseUser currentUser = ParseUser.getCurrentUser();
-        if (currentUser == null) {
-            Intent mainIntent = new Intent(MainActivity.this, LoginActivity.class);
-            startActivity(mainIntent);
-        } else{
+//        if (currentUser == null) {
+//            Intent mainIntent = new Intent(MainActivity.this, LoginActivity.class);
+//            startActivity(mainIntent);
+      //  } else{
             // show the signup or login screen
 
 
             i = getIntent();
 
 
-            session = new SessionManager(this);
+           // session = new SessionManager(this);
 
-            session.checkLogin();
+            //session.checkLogin();
             locationIBTN = (ImageButton) findViewById(R.id.emergencyIBTN);
             complaintIBTN = (ImageButton) findViewById(R.id.complaintIBTN);
             logout = (Button) findViewById(R.id.logoutBTN);
@@ -119,7 +119,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             complaintIBTN.setOnClickListener(this);
             logout.setOnClickListener(this);
             locationIBTN.setOnClickListener(this);
-        }
+
     }
 
     @Override
@@ -159,7 +159,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.logoutBTN:
-                session.logoutUser();
+                ParseUser.logOut();
+                Intent sessionIntent = new Intent(this, LoginActivity.class);
+                startActivity(sessionIntent);
+                //session.logoutUser();
                 break;
 
             case R.id.emergencyIBTN:

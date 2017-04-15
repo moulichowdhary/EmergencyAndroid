@@ -35,24 +35,32 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private EditText userID, Password;
     private Button button4, rigisterBTN,forgotPasswordBTN;
 
-    SharedPreferences sharedpreferences;
-    SharedPreferences.Editor editor;
-    SessionManager session;
 
-    RegistrationActivity ra = new RegistrationActivity();
+
+    // Redirected to main activity if user already logged in
+    public void isRedirected(){
+        if (ParseUser.getCurrentUser() != null){
+            Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+            startActivity(intent);
+        }
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        isRedirected();
+
         RelativeLayout relativeLayout = (RelativeLayout) findViewById(R.id.activity_login);
         relativeLayout.setOnClickListener(this);
 
 
 
 
-            session = new SessionManager(this);
-            sharedpreferences = getSharedPreferences("Prefs", Context.MODE_PRIVATE);
-            editor = sharedpreferences.edit();
+
+           // session = new SessionManager(this);
+           // sharedpreferences = getSharedPreferences("Prefs", Context.MODE_PRIVATE);
+           // editor = sharedpreferences.edit();
 
 
             rigisterBTN = (Button) findViewById(R.id.register);
@@ -109,18 +117,20 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
 
                                 if (e == null) {
+                                    //isRedirected();
 
-                                    session.createLoginSession(user919ID, password);
+                                    //session.createLoginSession(user919ID, password);
 
                                     Intent i = new Intent(getApplicationContext(), MainActivity.class);
                                     i.putExtra("919", userID.getText().toString());
 
                                     startActivity(i);
-                                    finish();
-                                    Log.i(sharedpreferences.getString("passKey", ""), "Good ");
-                                    System.out.print(sharedpreferences.getBoolean(
-                                            "IS_Login", true));
-                                    Toast.makeText(getApplicationContext(), sharedpreferences.getBoolean("IS_Login", false) + "", Toast.LENGTH_SHORT).show();
+                                    //finish();
+
+                                   // Log.i(sharedpreferences.getString("passKey", ""), "Good ");
+                                   // System.out.print(sharedpreferences.getBoolean(
+                                            //"IS_Login", true));
+                                    Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_SHORT).show();
 
                                 } else {
                                     Toast.makeText(getApplicationContext(), "No such user exist", Toast.LENGTH_LONG).show();
