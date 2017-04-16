@@ -31,6 +31,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.kinvey.java.Util;
+import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
@@ -51,6 +52,7 @@ public class ComplaintActivity extends AppCompatActivity {
 
     private EditText data;
     private Button submitReport,emergencyContacts;
+    private Button hospitalSearch;
     private Spinner dropDownComplaintType;
 
     private Uri mMediaUri;
@@ -95,6 +97,11 @@ public class ComplaintActivity extends AppCompatActivity {
         submitReport = (Button) findViewById(R.id.submitReportBTN);
         emergencyContacts = (Button) findViewById(R.id.conatactsBTN);
         dropDownComplaintType = (Spinner) findViewById(R.id.complaintTypeSpinner);
+
+        //hosital locations
+        hospitalSearch = (Button) findViewById(R.id.hospitalSearchBTN);
+
+
 
         RelativeLayout relativeLayout = (RelativeLayout) findViewById(R.id.activity_complaint);
         relativeLayout.setOnClickListener(new View.OnClickListener() {
@@ -206,7 +213,12 @@ public class ComplaintActivity extends AppCompatActivity {
 
             }
         }
-
+        //keyboard hiding immediately after loading page
+        View view = this.getCurrentFocus();
+        if (view != null) {
+            InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
 
         }
 
@@ -222,17 +234,21 @@ public class ComplaintActivity extends AppCompatActivity {
 //    }
 
 
+
+
+
     private boolean result;
 
     protected boolean fileComplaint() {
 
         Log.d("Enter to fileComplaint","Success2");
 
-        ParseUser currentUser = ParseUser.getCurrentUser();
-        currentUser.logOut();
+//        ParseUser currentUser = ParseUser.getCurrentUser();
+//        currentUser.logOut();
 
         ParseObject parseObject = new ParseObject("EmergencyReport");
         parseObject.put("ComplaintString", data.getText().toString());
+        parseObject.put("Username", ParseUser.getCurrentUser().getUsername());
         parseObject.saveInBackground(new SaveCallback() {
             @Override
             public void done(ParseException e) {

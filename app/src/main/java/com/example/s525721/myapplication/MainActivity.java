@@ -25,7 +25,10 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.parse.ParseQuery;
 import com.parse.ParseUser;
+
+import org.w3c.dom.Text;
 
 import java.io.IOException;
 import java.util.List;
@@ -36,7 +39,7 @@ import static com.example.s525721.myapplication.R.id.logoutBTN;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
      ImageButton locationIBTN,complaintIBTN;
      Button logout;
-    TextView name ;
+    TextView name,footer,userWelcomeTV ;
     private LocationManager locationManager;
     private LocationListener listener;
     private double latitude;
@@ -51,16 +54,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+setTitle("Emergency");
         ParseUser currentUser = ParseUser.getCurrentUser();
 //        if (currentUser == null) {
 //            Intent mainIntent = new Intent(MainActivity.this, LoginActivity.class);
 //            startActivity(mainIntent);
       //  } else{
             // show the signup or login screen
+            footer=(TextView) findViewById(R.id.footer);
+        footer.setText(R.string.footer);
+        userWelcomeTV=(TextView) findViewById(R.id.UserNameTV);
 
+        ParseQuery<ParseUser> query = ParseUser.getQuery();
+       // ParseUser.
 
-            i = getIntent();
+        userWelcomeTV.setText("Welcome, " +ParseUser.getCurrentUser().getUsername());
+        i = getIntent();
 
 
            // session = new SessionManager(this);

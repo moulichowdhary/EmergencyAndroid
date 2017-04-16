@@ -36,9 +36,12 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ComplaintActivity" />
+        <activity android:name=".ComplaintActivity"
+            android:windowSoftInputMode="stateHidden"
+            ></activity>
         <activity android:name=".PhoneNumber" />
         <activity android:name=".ForgotPasswordActivity"></activity>
+        <activity android:name=".PlacesActivity"> </activity>
     </application>
 
 </manifest>

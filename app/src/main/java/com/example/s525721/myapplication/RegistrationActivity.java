@@ -184,21 +184,13 @@ password.setOnTouchListener(new View.OnTouchListener() {
 
         String pass = password.getText().toString();
         String cpass = confirmPassword.getText().toString();
-       // String addrs = address.getText().toString();
 
-//        ParseObject users = new ParseObject("Users");
-//        users.put("name", String.valueOf(nameOfUser));
-//        users.put("email", String.valueOf(eMail));
-//        users.put("password", String.valueOf(pass));
-//        users.put("confirmPassword", String.valueOf(cpass));
-//        users.put("address", String.valueOf(addrs));
+
         ParseUser currentUser = ParseUser.getCurrentUser();
         currentUser.logOut();
         ParseUser user = new ParseUser();
 
-        //user.put("name", String.valueOf(nameOfUser));
-        //user.put("email", String.valueOf(eMail));
-       // user.put("password", String.valueOf(pass));
+
         user.put("confirmPassword", String.valueOf(cpass));
         //user.put("address", String.valueOf(addrs));
         user.put("user919",user919ID);
@@ -212,9 +204,11 @@ password.setOnTouchListener(new View.OnTouchListener() {
         //email validation
         String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
 
-        if (user919ID
-                .isEmpty()) {
-            Toast.makeText(getApplicationContext(), "please enter 919#", Toast.LENGTH_SHORT).show();
+        String user919Pattern = "919[0-9]{6}";
+
+        if (!user919ID
+                .matches(user919Pattern)) {
+            Toast.makeText(getApplicationContext(), "please enter valid 919#", Toast.LENGTH_SHORT).show();
             success = false;
         }else if (nameOfUser.isEmpty()) {
             Toast.makeText(getApplicationContext(), "Please enter valid name", Toast.LENGTH_SHORT).show();
