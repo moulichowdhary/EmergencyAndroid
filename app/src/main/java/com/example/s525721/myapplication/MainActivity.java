@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private double latitude;
     private double longitude;
     String address;
-    SessionManager session;
+    //SessionManager session;
     Intent i;
 
     Intent intent;

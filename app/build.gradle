@@ -6,10 +6,11 @@ android {
 
     defaultConfig {
         applicationId "com.example.s525721.myapplication"
-        minSdkVersion 19
+        minSdkVersion 21
         targetSdkVersion 24
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
     }
     buildTypes {
         release {
@@ -21,14 +22,13 @@ android {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:24.2.0'
-    compile 'com.android.support:design:24.2.0'
     compile files('libs/activation.jar')
     compile files('libs/additionnal.jar')
     compile files('libs/mail.jar')
     compile files('src/bolts-tasks-1.4.0.jar')
     compile files('src/Parse-1.13.0.jar')
-
-    compile files('libs/commons-io-2.5.jar')
+    compile 'com.android.support:appcompat-v7:24.2.1'
+    compile 'com.android.support:design:24.2.1'
+    compile 'com.google.android.gms:play-services:9.0.2'
+    testCompile 'junit:junit:4.12'
 }

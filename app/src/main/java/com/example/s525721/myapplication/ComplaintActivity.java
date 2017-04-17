@@ -101,6 +101,15 @@ public class ComplaintActivity extends AppCompatActivity {
         //hosital locations
         hospitalSearch = (Button) findViewById(R.id.hospitalSearchBTN);
 
+hospitalSearch.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View view) {
+        Intent intent = new Intent(ComplaintActivity.this,PlacesActivity.class);
+        intent.putExtra("Lat",latitude);
+        intent.putExtra("Lng",longitude);
+        startActivity(intent);
+    }
+});
 
 
         RelativeLayout relativeLayout = (RelativeLayout) findViewById(R.id.activity_complaint);

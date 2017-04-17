@@ -127,9 +127,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                     startActivity(i);
                                     //finish();
 
-                                   // Log.i(sharedpreferences.getString("passKey", ""), "Good ");
-                                   // System.out.print(sharedpreferences.getBoolean(
-                                            //"IS_Login", true));
+
                                     Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_SHORT).show();
 
                                 } else {

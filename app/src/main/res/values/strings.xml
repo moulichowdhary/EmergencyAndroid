@@ -3,4 +3,5 @@
     <string name="action_sign_in_short" />
     <string name="action_sign_in" />
     <string name="footer">\@ University Police Dept.  &amp; School of CSIS</string>
+    <string name="title_activity_hospital_map_route">Map</string>
 </resources>

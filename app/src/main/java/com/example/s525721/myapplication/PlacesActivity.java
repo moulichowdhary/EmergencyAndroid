@@ -6,9 +6,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class PlacesActivity extends ListActivity {
@@ -16,6 +19,7 @@ public class PlacesActivity extends ListActivity {
 //    private LocationListener listener;
     private double latitude;
    private double longitude;
+    //ListView hospitalPlaces;
 
     @Override
     protected void onCreate(Bundle arg0) {
@@ -26,54 +30,6 @@ public class PlacesActivity extends ListActivity {
         longitude = i.getDoubleExtra("Lon",-94.8);
 
 
-//        locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
-//
-//        //configure_button();
-//        listener = new LocationListener() {
-//            @Override
-//            public void onLocationChanged(Location location) {
-//                latitude = location.getLatitude();
-//                longitude = location.getLongitude();
-//                System.out.print(latitude);
-//                System.out.print(longitude);
-//
-//            }
-//
-//            @Override
-//            public void onStatusChanged(String s, int i, Bundle bundle) {
-//
-//            }
-//
-//            @Override
-//            public void onProviderEnabled(String s) {
-//
-//            }
-//
-//            @Override
-//            public void onProviderDisabled(String s) {
-//
-//                Intent i = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-//                startActivity(i);
-//            }
-//        };
-//
-//        // first check for permissions
-//        //if API <23, no need of permissions
-//        if (Build.VERSION.SDK_INT < 23) {
-//            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, listener);
-//        } else {
-//
-//            if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-//                // if no permission -> ask for permission
-//                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
-//            } else {
-//                //if we have permissions already..if not not ask for permission result
-//                locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, listener);
-//                Location lastKnownLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-//
-//            }
-//        }
-
         //MainActivity.GetPlaces pl = new MainActivity.GetPlaces(getApplicationContext(), getListView());
         new GetPlaces(this, getListView()).execute();
 //pl.execute();
@@ -83,11 +39,21 @@ public class PlacesActivity extends ListActivity {
 
     }
 
+    @Override
+    protected void onListItemClick(ListView l, View v, int position, long id) {
+        super.onListItemClick(l, v, position, id);
+
+
+
+        Toast.makeText(PlacesActivity.this,"Click"+position,Toast.LENGTH_SHORT).show();
+
+    }
+
     class GetPlaces extends AsyncTask<Void, Void, Void> {
 
         private ProgressDialog dialog;
         private Context context;
-        private String[] placeName;
+        private ArrayList<String> placeName;
         private String[] imageUrl;
         private ListView listView;
 
@@ -102,6 +68,9 @@ public class PlacesActivity extends ListActivity {
             // TODO Auto-generated method stub
             super.onPostExecute(result);
             dialog.dismiss();
+            if (placeName.size() == 0){
+                placeName.add("No hospitals in 2 miles radius");
+            }
             ArrayAdapter<String> hospitals = new ArrayAdapter<String>(context, android.R.layout.simple_expandable_list_item_1,placeName);
             listView.setAdapter(hospitals);
             hospitals.notifyDataSetChanged();
@@ -132,8 +101,10 @@ public class PlacesActivity extends ListActivity {
             System.out.println(latitude);
             System.out.println(longitude);
 
-            placeName = new String[findPlaces.size()];
+            placeName = new ArrayList<String>();
             imageUrl = new String[findPlaces.size()];
+
+
 
             for (int i = 0; i < findPlaces.size(); i++) {
 
@@ -141,7 +112,7 @@ public class PlacesActivity extends ListActivity {
                 placeDetail.getIcon();
 
                 System.out.println(  placeDetail.getName());
-                placeName[i] =placeDetail.getName();
+                placeName.add(placeDetail.getName());
 
                 imageUrl[i] =placeDetail.getIcon();
 
