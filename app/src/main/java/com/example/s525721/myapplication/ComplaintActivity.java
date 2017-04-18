@@ -51,65 +51,40 @@ public class ComplaintActivity extends AppCompatActivity {
 //    public static final int MEDIA_TYPE_IMAGE = 2;
 
     private EditText data;
-    private Button submitReport,emergencyContacts;
-    private Button hospitalSearch;
+    private Button submitReport;
+    //private Button hospitalSearch;
     private Spinner dropDownComplaintType;
 
-    private Uri mMediaUri;
-
-
-    private LocationManager locationManager;
-    private LocationListener listener;
+   // private Uri mMediaUri;
 
     private double latitude;
     private double longitude;
 
 
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        //request code --> 1
-        //permissions array , we do haVE ONLY ONE PERMISSION
-        //PERMISSION RESULT
 
-        if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED ) {
-                // TODO: Consider calling
-                //    ActivityCompat#requestPermissions
-                // here to request the missing permissions, and then overriding
-                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                //                                          int[] grantResults)
-                // to handle the case where the user grants the permission. See the documentation
-                // for ActivityCompat#requestPermissions for more details.
-                locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, listener);
-            }else{
-                return;
-            }
 
-        }
-
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_complaint);
-        data = (EditText) findViewById(R.id.complaintData);
+        data = (EditText) findViewById(R.id.conplaintEditText);
         submitReport = (Button) findViewById(R.id.submitReportBTN);
-        emergencyContacts = (Button) findViewById(R.id.conatactsBTN);
+        //emergencyContacts = (Button) findViewById(R.id.conatactsBTN);
         dropDownComplaintType = (Spinner) findViewById(R.id.complaintTypeSpinner);
 
         //hosital locations
-        hospitalSearch = (Button) findViewById(R.id.hospitalSearchBTN);
+        //hospitalSearch = (Button) findViewById(R.id.hospitalSearchBTN);
 
-hospitalSearch.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View view) {
-        Intent intent = new Intent(ComplaintActivity.this,PlacesActivity.class);
-        intent.putExtra("Lat",latitude);
-        intent.putExtra("Lng",longitude);
-        startActivity(intent);
-    }
-});
+//hospitalSearch.setOnClickListener(new View.OnClickListener() {
+//    @Override
+//    public void onClick(View view) {
+//        Intent intent = new Intent(ComplaintActivity.this,PlacesActivity.class);
+//        intent.putExtra("Lat",latitude);
+//        intent.putExtra("Lng",longitude);
+//        startActivity(intent);
+//    }
+//});
 
 
         RelativeLayout relativeLayout = (RelativeLayout) findViewById(R.id.activity_complaint);
@@ -167,61 +142,19 @@ hospitalSearch.setOnClickListener(new View.OnClickListener() {
 
 
 
-
-        emergencyContacts.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent contacts = new Intent(getApplicationContext(), PhoneNumber.class);
-                    startActivity(contacts);
-                }
-            });
+//
+//        emergencyContacts.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    Intent contacts = new Intent(getApplicationContext(), PhoneNumber.class);
+//                    startActivity(contacts);
+//                }
+//            });
 
 
 //Getting location
 
 
-        locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
-
-        listener = new LocationListener() {
-            @Override
-            public void onLocationChanged(Location location) {
-                latitude = location.getLatitude();
-                longitude = location.getLongitude();
-
-            }
-
-            @Override
-            public void onStatusChanged(String s, int i, Bundle bundle) {
-
-            }
-
-            @Override
-            public void onProviderEnabled(String s) {
-
-            }
-
-            @Override
-            public void onProviderDisabled(String s) {
-
-                Intent i = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-                startActivity(i);
-            }
-        };
-
-        if(Build.VERSION.SDK_INT < 23){
-            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, listener);
-        }else{
-
-            if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED){
-                // if no permission -> ask for permission
-                ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION},1);
-            }else{
-                //if we have permissions already..if not not ask for permission result
-                locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, listener);
-                Location lastKnownLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-
-            }
-        }
         //keyboard hiding immediately after loading page
         View view = this.getCurrentFocus();
         if (view != null) {

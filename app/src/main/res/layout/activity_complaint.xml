@@ -8,91 +8,70 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="@mipmap/regbg"
+    android:background="@mipmap/complaint"
     tools:context="com.example.s525721.myapplication.ComplaintActivity">
-    <Spinner
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="36dp"
-        android:id="@+id/complaintTypeSpinner"
-        android:layout_marginTop="100dp"
-        android:layout_alignParentStart="true" />
 
-<ScrollView
-    android:id="@+id/scrollMultiText"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_below="@+id/complaintTypeSpinner"
-    >
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textMultiLine"
-        android:ems="10"
-        android:layout_marginBottom="47dp"
-        android:id="@+id/complaintData"
-        android:hint="Write a complaint here!"
+    <!-- <Button
+            android:text="Take PHOTO"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:id="@+id/takePhotobutton"
+            android:background="@drawable/round_small_blue"
+            android:layout_below="@+id/scrollMultiText"
+            android:layout_marginTop="10dp"
+            android:layout_toStartOf="@+id/submitReportBTN"
+            android:textColor="#ff1"/>
 
-        android:layout_above="@+id/uploadImageBTN"
-        android:layout_alignParentStart="true" />
-</ScrollView>
-   <!-- <Button
-        android:text="Take PHOTO"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:id="@+id/takePhotobutton"
-        android:background="@drawable/round_small_blue"
-        android:layout_below="@+id/scrollMultiText"
-        android:layout_marginTop="10dp"
-        android:layout_toStartOf="@+id/submitReportBTN"
-        android:textColor="#ff1"/>
-
-    <Button
-        android:text="Upload Image"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:id="@+id/uploadImageBTN"
-        android:layout_below="@id/scrollMultiText"
-        android:layout_toRightOf="@+id/takePhotobutton"
-        android:layout_marginTop="10dp"
-        android:layout_toEndOf="@+id/submitReportBTN"
-        android:background="@drawable/round_small_blue"
-        android:layout_marginBottom="59dp"
-        android:textColor="#ff3"
-        android:onClick="uploadPhoto" />-->
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/conatactsBTN"
-        tools:text="Emergency Phone numbers?"
-        android:layout_below="@+id/submitReportBTN"
-        android:layout_centerHorizontal="true"
-        android:background="@drawable/circle_side"
-        android:textColor="#0930f1"
-        android:text="Emergency Phone numbers?" />
-
+        <Button
+            android:text="Upload Image"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:id="@+id/uploadImageBTN"
+            android:layout_below="@id/scrollMultiText"
+            android:layout_toRightOf="@+id/takePhotobutton"
+            android:layout_marginTop="10dp"
+            android:layout_toEndOf="@+id/submitReportBTN"
+            android:background="@drawable/round_small_blue"
+            android:layout_marginBottom="59dp"
+            android:textColor="#ff3"
+            android:onClick="uploadPhoto" />-->
 
 
     <Button
         android:text="Submit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="52dp"
+        android:layout_marginBottom="63dp"
         android:id="@+id/submitReportBTN"
-        android:layout_below="@+id/scrollMultiText"
-        android:layout_centerHorizontal="true"
         android:textColor="#fff"
-        android:background="#000"/>
-
-    <Button
-        android:text="Hospital Search"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="33dp"
-        android:id="@+id/hospitalSearchBTN"
-        android:layout_below="@+id/conatactsBTN"
+        android:background="#000"
+        android:alpha="0"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
 
 
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/complaintTypeSpinner"
+
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="178dp" />
+
+    <EditText
+        android:inputType="textMultiLine"
+        android:lines="8"
+        android:minLines="4"
+        android:gravity="top|left"
+        android:maxLines="10"
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:scrollbars="vertical"
+        android:paddingTop="30dp"
+        android:layout_above="@+id/submitReportBTN"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="14dp"
+        android:layout_marginBottom="31dp"
+        android:id="@+id/conplaintEditText" />
 </RelativeLayout>

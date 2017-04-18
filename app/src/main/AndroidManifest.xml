@@ -40,7 +40,7 @@
             android:windowSoftInputMode="stateHidden" />
         <activity android:name=".PhoneNumber" />
         <activity android:name=".ForgotPasswordActivity" />
-        <activity android:name=".PlacesActivity"></activity>
+        <activity android:name=".PlacesActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -53,6 +53,12 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
+        <activity android:name=".AddingMailsActivity"
+            android:windowSoftInputMode="adjustPan">
+
+
+
+        </activity>
     </application>
 
 </manifest>

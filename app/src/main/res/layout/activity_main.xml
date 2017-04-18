@@ -9,62 +9,68 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:weightSum="1"
-    android:background="@mipmap/regbg"
-
+    android:background="@mipmap/mainscreen"
+    android:theme="@style/AppTheme"
 
     >
 
-
-    <ImageButton
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@mipmap/complaintimage"
-        android:layout_marginTop="45dp"
+        android:background="@drawable/round_complaint"
         android:id="@+id/complaintIBTN"
-        android:layout_below="@+id/emergencyIBTN"
-        android:layout_marginBottom="50dp"
+        android:alpha="0"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
 
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@mipmap/emergency"
-        android:id="@+id/emergencyIBTN"
-
-        android:layout_centerVertical="true"
-        android:layout_alignStart="@+id/complaintIBTN" />
 
     <Button
-        android:text="Logout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/logoutBTN"
-        android:background="@drawable/circle_side"
+        android:background="@drawable/round_complaint"
+        android:id="@+id/iamfineBTN"
+        android:alpha="0"
+        android:layout_above="@+id/complaintIBTN"
+        android:layout_toEndOf="@+id/complaintIBTN"
+        android:layout_marginBottom="27dp" />
 
-        android:layout_marginBottom="13dp"
-        android:layout_above="@+id/emergencyIBTN"
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/round_complaint"
+        android:id="@+id/emergencyContactsBTN"
+        android:alpha="0"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/round_complaint"
+        android:id="@+id/hospitalFindBTN"
+        android:alpha="0"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true" />
 
-    <TextView
-        android:text="TextView"
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/logoutBTN"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="59dp"
-        android:layout_marginTop="12dp"
-        android:id="@+id/UserNameTV"
-        android:textColor="@color/colorPrimaryDark" />
-
-    <TextView
-        android:text=""
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:background="@drawable/round_button"
+        android:id="@+id/emergencyIBTN"
+        android:alpha="0"
+        android:layout_alignBottom="@+id/iamfineBTN"
         android:layout_centerHorizontal="true"
-        android:id="@+id/footer"
-        android:textColor="@android:color/background_light"
-        android:gravity="center_horizontal" />
+        android:layout_marginBottom="88dp" />
 
+    <Button
+        android:text="Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="94dp"
+        android:id="@+id/settingsBTN"
+        android:alpha="0"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/emergencyIBTN"
+        android:background="@drawable/round_small_new"/>
 
 </RelativeLayout>

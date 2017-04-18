@@ -19,12 +19,16 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
+import com.parse.Parse;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
@@ -34,12 +38,14 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
-import static com.example.s525721.myapplication.R.id.logoutBTN;
+//import static com.example.s525721.myapplication.R.id.logoutBTN;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-     ImageButton locationIBTN,complaintIBTN;
-     Button logout;
-    TextView name,footer,userWelcomeTV ;
+     Button locationIBTN,complaintIBTN;
+Button fineMsgBTN,emergencyContactsBTN,hospitalSearchBTN,settingsBTN;
+
+     //Button logout;
+    //TextView name,footer,userWelcomeTV ;
     private LocationManager locationManager;
     private LocationListener listener;
     private double latitude;
@@ -61,23 +67,64 @@ setTitle("Emergency");
 //            startActivity(mainIntent);
       //  } else{
             // show the signup or login screen
-            footer=(TextView) findViewById(R.id.footer);
-        footer.setText(R.string.footer);
-        userWelcomeTV=(TextView) findViewById(R.id.UserNameTV);
+//            footer=(TextView) findViewById(R.id.footer);
+//        footer.setText(R.string.footer);
+//        userWelcomeTV=(TextView) findViewById(R.id.UserNameTV);
 
         ParseQuery<ParseUser> query = ParseUser.getQuery();
        // ParseUser.
 
-        userWelcomeTV.setText("Welcome, " +ParseUser.getCurrentUser().getUsername());
+       // userWelcomeTV.setText("Welcome, " +ParseUser.getCurrentUser().getUsername());
         i = getIntent();
 
 
            // session = new SessionManager(this);
 
             //session.checkLogin();
-            locationIBTN = (ImageButton) findViewById(R.id.emergencyIBTN);
-            complaintIBTN = (ImageButton) findViewById(R.id.complaintIBTN);
-            logout = (Button) findViewById(R.id.logoutBTN);
+            locationIBTN = (Button) findViewById(R.id.emergencyIBTN);
+            complaintIBTN = (Button) findViewById(R.id.complaintIBTN);
+            fineMsgBTN = (Button) findViewById(R.id.iamfineBTN);
+            hospitalSearchBTN = (Button) findViewById(R.id.hospitalFindBTN);
+            emergencyContactsBTN = (Button)findViewById(R.id.emergencyContactsBTN);
+            settingsBTN = (Button)findViewById(R.id.settingsBTN);
+
+
+            //logout = (Button) findViewById(R.id.logoutBTN);
+
+        settingsBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Creating the instance of PopupMenu
+                PopupMenu popup = new PopupMenu(MainActivity.this, settingsBTN);
+                //Inflating the Popup using xml file
+                popup.getMenuInflater().inflate(R.menu.popup_menu, popup.getMenu());
+
+                //registering popup with OnMenuItemClickListener
+                popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    public boolean onMenuItemClick(MenuItem item) {
+                        switch(item.getItemId()){
+                            case R.id.logout:
+                                ParseUser.logOut();
+                                Intent sessionIntent = new Intent(MainActivity.this, LoginActivity.class);
+                                startActivity(sessionIntent);
+                                break;
+                            case R.id.mailRecipients:
+                                Intent addMailIntent = new Intent(MainActivity.this, AddingMailsActivity.class);
+                                startActivity(addMailIntent);
+                                break;
+
+                //session.logoutUser();
+//                break;
+
+                        }
+
+                        //Toast.makeText(MainActivity.this,"You Clicked : " + item.getItemId(),Toast.LENGTH_SHORT).show();
+                        return true;
+                    }
+                });
+                popup.show();
+            }
+        });
 
 
             locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
@@ -126,8 +173,11 @@ setTitle("Emergency");
             }
 
             complaintIBTN.setOnClickListener(this);
-            logout.setOnClickListener(this);
+            //logout.setOnClickListener(this);
             locationIBTN.setOnClickListener(this);
+        emergencyContactsBTN.setOnClickListener(this);
+        fineMsgBTN.setOnClickListener(this);
+        hospitalSearchBTN.setOnClickListener(this);
 
     }
 
@@ -167,10 +217,10 @@ setTitle("Emergency");
                 startActivity(i);
                 break;
 
-            case R.id.logoutBTN:
-                ParseUser.logOut();
-                Intent sessionIntent = new Intent(this, LoginActivity.class);
-                startActivity(sessionIntent);
+            case R.id.emergencyContactsBTN:
+
+                Intent intentContacts = new Intent(this, PhoneNumber.class);
+                startActivity(intentContacts);
                 //session.logoutUser();
                 break;
 
@@ -185,6 +235,24 @@ setTitle("Emergency");
 
                 sendEmail(latitude, longitude, address);
 
+                break;
+            case R.id.iamfineBTN:
+
+                //noinspection MissingPermission
+                //locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, listener);
+                //void requestLocationUpdates (String provider,  long minTime,  float minDistance, LocationListener listener)
+
+
+               // String sub = getCompleteAddressString(latitude, longitude);
+
+                sentWrongEmail();
+
+                break;
+            case R.id.hospitalFindBTN:
+                Intent hospitalsIntent = new Intent(MainActivity.this,PlacesActivity.class);
+                hospitalsIntent.putExtra("Lat",latitude);
+                hospitalsIntent.putExtra("Lng",longitude);
+                startActivity(hospitalsIntent);
                 break;
 
 
@@ -229,11 +297,19 @@ setTitle("Emergency");
         //sub.concat("\n\n My 919 ID: "+ intent.getStringExtra("919"));
         String body = "http://www.google.com/maps/place/" + String.valueOf(latitude) + "," + String.valueOf(longitude);
 
-        String user919 = i.getStringExtra("919");
+        String user919 = ParseUser.getCurrentUser().getUsername();
         SendMail sm = new SendMail(this, "makkenasrinivasarao1@gmail.com", user919+ "\n" + sub, sub + "\n" + body);
         sm.execute();
 
 
     }
+
+    protected void sentWrongEmail(){
+        String user919 = ParseUser.getCurrentUser().getUsername();
+        String body = "http://www.google.com/maps/place/" + String.valueOf(latitude) + "," + String.valueOf(longitude);
+        SendMail sm = new SendMail(this, "makkenasrinivasarao1@gmail.com", user919 +", I'm OK, Unfortunately Clicked on app!  ", "I'm sorry for the inconvenience caused because of me!\n" + "" + "\n" + body);
+        sm.execute();
+    }
+
 
 }

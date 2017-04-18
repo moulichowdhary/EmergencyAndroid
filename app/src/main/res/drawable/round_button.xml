@@ -3,8 +3,8 @@
 <item>
 
     <shape android:shape="oval">
-        <size android:height="100dp" android:width="100dp"/>
-        <solid android:color="#f33"/>
+        <size android:height="175dp" android:width="175dp"/>
+        <solid android:color="@color/wallet_bright_foreground_holo_dark"/>
     </shape>
 </item>
 </selector>
