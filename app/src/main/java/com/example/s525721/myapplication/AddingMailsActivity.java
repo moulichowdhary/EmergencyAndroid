@@ -39,7 +39,7 @@ public class AddingMailsActivity extends AppCompatActivity {
         recipientMailsList = (ListView) findViewById(R.id.mailsListView);
         emails = new ArrayList<String>();
 
-        emailArray = new ArrayAdapter(getApplicationContext(),android.R.layout.simple_list_item_1,emails);
+        emailArray = new ArrayAdapter(this,android.R.layout.simple_list_item_1,emails);
         recipientMailsList.setAdapter(emailArray);
 
 
@@ -65,7 +65,7 @@ public class AddingMailsActivity extends AppCompatActivity {
                     @Override
                     public void done(ParseException e) {
                         if (e==null){
-                            fetchData();
+                            //fetchData();
                             Toast.makeText(AddingMailsActivity.this,"Successfully Added",Toast.LENGTH_SHORT).show();
                         }else{
                             Log.i("Error: ",e.getMessage());
@@ -93,7 +93,9 @@ public class AddingMailsActivity extends AppCompatActivity {
                     if (list.size() > 0) {
                         for (ParseObject object : list) {
                             String mail=  object.getString("recipientEmail");
+                            Log.i("Retrivd",mail);
                             emails.add(mail);
+                            emailArray.notifyDataSetChanged();
                         }
                     }
                 }

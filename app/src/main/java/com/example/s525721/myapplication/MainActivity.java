@@ -28,13 +28,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
+import com.parse.FindCallback;
 import com.parse.Parse;
+import com.parse.ParseException;
+import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
 import org.w3c.dom.Text;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -44,14 +48,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      Button locationIBTN,complaintIBTN;
 Button fineMsgBTN,emergencyContactsBTN,hospitalSearchBTN,settingsBTN;
 
-     //Button logout;
-    //TextView name,footer,userWelcomeTV ;
+
     private LocationManager locationManager;
     private LocationListener listener;
     private double latitude;
     private double longitude;
     String address;
-    //SessionManager session;
+    ArrayList<String> Emails;
+
     Intent i;
 
     Intent intent;
@@ -60,7 +64,7 @@ Button fineMsgBTN,emergencyContactsBTN,hospitalSearchBTN,settingsBTN;
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-setTitle("Emergency");
+//setTitle("Emergency");
         ParseUser currentUser = ParseUser.getCurrentUser();
 //        if (currentUser == null) {
 //            Intent mainIntent = new Intent(MainActivity.this, LoginActivity.class);
@@ -172,6 +176,16 @@ setTitle("Emergency");
                 }
             }
 
+
+
+
+        //Emails retrival....
+        Emails = new ArrayList<String>();
+        fetchData();
+
+
+
+
             complaintIBTN.setOnClickListener(this);
             //logout.setOnClickListener(this);
             locationIBTN.setOnClickListener(this);
@@ -206,7 +220,34 @@ setTitle("Emergency");
 
     }
 
+    public void fetchData(){
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("EmailRecipients");
+        query.whereEqualTo("Username",ParseUser.getCurrentUser().getUsername());
+        query.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> list, ParseException e) {
 
+                if (e==null) {
+
+
+                    Toast.makeText(MainActivity.this, "Retrieved", Toast.LENGTH_SHORT).show();
+
+                    if (list.size() > 0) {
+                        for (ParseObject object : list) {
+                            String mail=  object.getString("recipientEmail");
+                            Log.i("RetrivdMainActivity",mail);
+                            Emails.add(mail);
+                            //emailArray.notifyDataSetChanged();
+                        }
+                    }
+                }
+
+            }
+
+
+        });
+
+    }
 
     @Override
     public void onClick(View view) {
@@ -298,8 +339,14 @@ setTitle("Emergency");
         String body = "http://www.google.com/maps/place/" + String.valueOf(latitude) + "," + String.valueOf(longitude);
 
         String user919 = ParseUser.getCurrentUser().getUsername();
+
         SendMail sm = new SendMail(this, "makkenasrinivasarao1@gmail.com", user919+ "\n" + sub, sub + "\n" + body);
         sm.execute();
+        for(String mail:Emails){
+            Log.i("Mail",mail);
+            SendMail sm1 = new SendMail(this, mail, user919+ "\n" + sub, sub + "\n" + body);
+            sm1.execute();
+        }
 
 
     }
