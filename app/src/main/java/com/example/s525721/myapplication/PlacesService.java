@@ -73,7 +73,7 @@ public class PlacesService {
             urlString.append(Double.toString(latitude));
             urlString.append(",");
             urlString.append(Double.toString(longitude));
-            urlString.append("&radius=10000");
+            urlString.append("&radius=100000");
             //   urlString.append("&types="+place);
             urlString.append("&sensor=false&key=" + API_KEY);
         } else {
@@ -81,7 +81,7 @@ public class PlacesService {
             urlString.append(Double.toString(latitude));
             urlString.append(",");
             urlString.append(Double.toString(longitude));
-            urlString.append("&radius=10000");
+            urlString.append("&radius=100000");
             urlString.append("&types="+place);
             urlString.append("&sensor=false&key=" + API_KEY);
         }

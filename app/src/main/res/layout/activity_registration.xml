@@ -20,10 +20,12 @@
         android:inputType="textPersonName"
 
         android:ems="10"
+        android:layout_marginTop="46dp"
+        android:id="@+id/user919ET"
+        android:background="@android:color/transparent"
+
         android:layout_below="@+id/nameET"
-        android:layout_alignStart="@+id/nameET"
-        android:layout_marginTop="24dp"
-        android:id="@+id/user919ET" />
+        android:layout_alignStart="@+id/nameET" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -31,30 +33,10 @@
         android:inputType="textPersonName"
 
         android:ems="10"
-        android:layout_marginStart="38dp"
-        android:layout_marginTop="134dp"
-        android:id="@+id/nameET"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:ems="10"
-        android:layout_marginTop="27dp"
-        android:id="@+id/passwordEditText"
-        android:layout_below="@+id/mailET"
-        android:layout_alignStart="@+id/mailET" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-
-        android:ems="10"
-        android:layout_marginTop="27dp"
+        android:layout_marginTop="56dp"
         android:id="@+id/mailET"
+        android:background="@android:color/transparent"
+
         android:layout_below="@+id/user919ET"
         android:layout_alignStart="@+id/user919ET" />
 
@@ -63,44 +45,74 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/signUpBTN"
+        android:alpha="0"
         android:layout_below="@+id/cpassEditText"
         android:layout_alignEnd="@+id/cpassEditText"
-        android:alpha="0"
-        />
+        android:layout_marginTop="10dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+
+        android:ems="10"
+        android:layout_marginStart="38dp"
+        android:layout_marginTop="140dp"
+        android:id="@+id/nameET"
+        android:background="@android:color/transparent"
+
+
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
 
     <Button
         android:text="Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/signUpBTN"
-        android:layout_alignStart="@+id/signUpBTN"
         android:layout_marginStart="56dp"
-        android:layout_marginTop="9dp"
         android:id="@+id/signInHere"
         android:onClick="signInHere"
         android:alpha="0"
-        />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:ems="10"
-        android:layout_marginTop="19dp"
-        android:id="@+id/cpassEditText"
-        android:layout_below="@+id/passwordEditText"
-        android:layout_alignStart="@+id/passwordEditText" />
+
+        android:layout_below="@+id/signUpBTN"
+        android:layout_alignStart="@+id/signUpBTN" />
 
     <ImageButton android:id="@+id/passwordPolicy"
 
 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@mipmap/passpolicy2"
-        android:layout_alignTop="@+id/passwordEditText"
-        android:layout_alignParentEnd="true"
-        android:layout_toEndOf="@+id/signInHere" />
+        android:background="@mipmap/info"
+        android:layout_marginRight="30dp"
+        android:layout_below="@+id/mailET"
+        android:layout_toEndOf="@+id/signInHere"
+        android:layout_marginStart="20dp" />
 
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:layout_marginTop="43dp"
+        android:id="@+id/cpassEditText"
+        android:background="@android:color/transparent"
+
+        android:layout_below="@+id/passwordEditText"
+        android:layout_alignStart="@+id/passwordEditText" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/passwordEditText"
+        android:background="@android:color/transparent"
+
+        android:layout_marginStart="6dp"
+        android:layout_below="@+id/passwordPolicy"
+        android:layout_alignStart="@+id/mailET"
+        android:layout_marginTop="21dp" />
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="wrap_content"
@@ -156,6 +168,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/popCancelBTN"
             android:onClick="popCancel"
-            android:background="#0ff50b" />
+            android:background="#1d5013" />
     </LinearLayout>
+
 </RelativeLayout>

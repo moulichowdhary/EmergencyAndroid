@@ -121,7 +121,7 @@ public class ComplaintActivity extends AppCompatActivity {
                             //Log.d("Enter to fileComplaint", "Success1");
                             if (fileComplaint() == true) {
                                 //sendMailWithReport.sendEmail(sendMailWithReport.getLatitude(),sendMailWithReport.getLongitude());
-                                Toast.makeText(getApplicationContext(), "Success- report added", Toast.LENGTH_SHORT);
+                                //Toast.makeText(getApplicationContext(), "Success- report added", Toast.LENGTH_SHORT);
 
                             } else {
                                 Toast.makeText(getApplicationContext(), "Fail - Report not added", Toast.LENGTH_SHORT);
@@ -189,8 +189,8 @@ public class ComplaintActivity extends AppCompatActivity {
 
                 if (e == null) {
 
-                    Log.d("Enter to fileComplaint","Success3");
-                    Toast.makeText(getApplicationContext(), "Report saved", Toast.LENGTH_SHORT).show();
+                    //Log.d("Enter to fileComplaint","Success3");
+                    //Toast.makeText(getApplicationContext(), "Report saved", Toast.LENGTH_SHORT).show();
                    // sendEmail();
                     result = true;
 

@@ -70,7 +70,7 @@ public class PlacesActivity extends ListActivity {
             super.onPostExecute(result);
             dialog.dismiss();
             if (placeName.size() == 0){
-                placeName.add("No hospitals in 2 miles radius");
+                placeName.add("No hospitals in 3 miles radius");
             }
             ArrayAdapter<String> hospitals = new ArrayAdapter<String>(context, android.R.layout.simple_expandable_list_item_1,placeName);
             listView.setAdapter(hospitals);

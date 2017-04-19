@@ -37,30 +37,6 @@
             android:onClick="uploadPhoto" />-->
 
 
-    <Button
-        android:text="Submit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="63dp"
-        android:id="@+id/submitReportBTN"
-        android:textColor="#fff"
-        android:background="#000"
-        android:alpha="0"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
-
-
-    <Spinner
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/complaintTypeSpinner"
-
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="20dp"
-        android:layout_above="@+id/conplaintEditText"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="130dp" />
-
     <EditText
         android:inputType="textMultiLine"
         android:lines="8"
@@ -72,11 +48,34 @@
         android:scrollbars="vertical"
         android:paddingTop="30dp"
         android:id="@+id/conplaintEditText"
-
+        android:background="@android:color/transparent"
         android:layout_marginLeft="55dp"
         android:layout_marginRight="15dp"
 
         android:layout_marginBottom="101dp"
         android:layout_above="@+id/submitReportBTN"
         android:layout_alignParentStart="true" />
+
+    <Button
+        android:text="Submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="43dp"
+        android:id="@+id/submitReportBTN"
+        android:textColor="#fff"
+        android:background="@drawable/round_complaint"
+        android:alpha="0"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/complaintTypeSpinner"
+
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="33dp"
+        android:layout_above="@+id/conplaintEditText"
+        android:layout_alignEnd="@+id/conplaintEditText" />
 </RelativeLayout>

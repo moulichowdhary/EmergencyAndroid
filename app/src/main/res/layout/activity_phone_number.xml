@@ -17,7 +17,7 @@
 
     <TextView
         android:text="Emergency(911)"
-        android:textColor="#ff3422"
+        android:textColor="#1d5013"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/number1"
@@ -29,7 +29,7 @@
 
     <TextView
         android:text="SSM health"
-        android:textColor="#ff3422"
+        android:textColor="#1d5013"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/number4"
@@ -40,53 +40,9 @@
         android:background="#fff"
         />
 
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@mipmap/call40"
-        android:alpha="1"
-        android:id="@+id/call4"
-        android:layout_below="@+id/call3"
-        android:layout_alignStart="@+id/call3"
-        android:paddingTop="10dp"
-        android:onClick="callSSMhealth" />
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@mipmap/call40"
-        android:alpha="1"
-        android:id="@+id/call5"
-        android:layout_below="@+id/call4"
-        android:layout_alignStart="@+id/call3"
-        android:paddingTop="10dp"
-        android:onClick="callFire" />
-
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@mipmap/call40"
-        android:alpha="1"
-        android:id="@+id/call3"
-        android:paddingTop="10dp"
-        android:onClick="callSexualAssault"
-        android:layout_below="@+id/call2"
-        android:layout_alignStart="@+id/call2" />
-
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@mipmap/call40"
-        android:alpha="1"
-        android:id="@+id/call2"
-        android:paddingTop="10dp"
-        android:onClick="callUPD"
-        android:layout_below="@+id/call1"
-        android:layout_alignStart="@+id/call1"
-        android:layout_marginTop="12dp" />
-
     <TextView
         android:text="Sexual Assault"
-        android:textColor="#ff3422"
+        android:textColor="#1d5013"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/number3"
@@ -101,7 +57,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
-
+android:textColor="#1d5013"
         android:id="@+id/number2"
         android:textSize="30dp"
         android:background="#fff"
@@ -110,7 +66,7 @@
 
     <TextView
         android:text="Fire Emergency"
-        android:textColor="#ff3422"
+        android:textColor="#1d5013"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/number5"
@@ -124,12 +80,56 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:srcCompat="@mipmap/call40"
-        android:layout_marginTop="32dp"
+        android:alpha="1"
+        android:id="@+id/call4"
+        android:paddingTop="10dp"
+        android:onClick="callSSMhealth"
+        android:layout_below="@+id/call3"
+        android:layout_alignStart="@+id/call5"
+        android:layout_marginTop="15dp" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@mipmap/call40"
+        android:alpha="1"
+        android:id="@+id/call5"
+        android:paddingTop="10dp"
+        android:onClick="callFire"
+        android:layout_alignBottom="@+id/number5"
+        android:layout_alignStart="@+id/call3" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@mipmap/call40"
+        android:alpha="1"
+        android:id="@+id/call3"
+        android:paddingTop="10dp"
+        android:onClick="callSexualAssault"
+        android:layout_centerVertical="true"
+        android:layout_alignStart="@+id/call2" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@mipmap/call40"
+        android:alpha="1"
+        android:id="@+id/call2"
+        android:paddingTop="10dp"
+        android:onClick="callUPD"
+        android:layout_above="@+id/call3"
+        android:layout_alignStart="@+id/call1" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@mipmap/call40"
         android:id="@+id/call1"
         android:paddingTop="15dp"
         android:onClick="call919"
-        android:layout_below="@+id/linearLayout"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="30dp" />
+        android:layout_marginEnd="30dp"
+        android:layout_above="@+id/call2"
+        android:layout_alignParentEnd="true" />
 
 </RelativeLayout>

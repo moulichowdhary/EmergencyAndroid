@@ -128,6 +128,7 @@ policy.setOnClickListener(new View.OnClickListener() {
     }
 });
 
+
 //button
         Button button3 = (Button) findViewById(R.id.signUpBTN);
 password.setOnTouchListener(new View.OnTouchListener() {
@@ -167,7 +168,7 @@ password.setOnTouchListener(new View.OnTouchListener() {
 
                     startActivity(i);
                 } else {
-                    Toast.makeText(getApplicationContext(), "Row not inserted", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getApplicationContext(), "Row not inserted", Toast.LENGTH_SHORT).show();
 
                 }
     }
@@ -204,6 +205,7 @@ password.setOnTouchListener(new View.OnTouchListener() {
 
 
         user.put("confirmPassword", String.valueOf(cpass));
+        user.put("name",nameOfUser);
         //user.put("address", String.valueOf(addrs));
         user.put("user919",user919ID);
         user.setUsername(user919ID);

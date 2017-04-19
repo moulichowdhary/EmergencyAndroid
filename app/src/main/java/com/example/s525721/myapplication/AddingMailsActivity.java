@@ -4,10 +4,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.parse.FindCallback;
@@ -23,12 +25,13 @@ import com.parse.SignUpCallback;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AddingMailsActivity extends AppCompatActivity {
+public class AddingMailsActivity extends AppCompatActivity  {
     EditText recipientMail;
     Button addRecipientBTN;
     ListView recipientMailsList;
     ArrayList<String> emails;
     ArrayAdapter emailArray;
+    RelativeLayout mailRL;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,7 +45,14 @@ public class AddingMailsActivity extends AppCompatActivity {
         emailArray = new ArrayAdapter(this,android.R.layout.simple_list_item_1,emails);
         recipientMailsList.setAdapter(emailArray);
 
-
+mailRL = (RelativeLayout) findViewById(R.id.activity_adding_mails);
+        mailRL.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+                inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+            }
+        });
 
 
         fetchData();
@@ -95,13 +105,13 @@ public class AddingMailsActivity extends AppCompatActivity {
                 if (e==null) {
 
 
-                    //Toast.makeText(AddingMailsActivity.this, "Retrieved", Toast.LENGTH_SHORT).show();
+                                //Toast.makeText(AddingMailsActivity.this, "Retrieved", Toast.LENGTH_SHORT).show();
 
-                    if (list.size() > 0) {
-                        for (ParseObject object : list) {
-                            String mail=  object.getString("recipientEmail");
-                           // Log.i("Retrivd",mail);
-                            emails.add(mail);
+                                if (list.size() > 0) {
+                                    for (ParseObject object : list) {
+                                        String mail=  object.getString("recipientEmail");
+                                        // Log.i("Retrivd",mail);
+                                        emails.add(mail);
                             emailArray.notifyDataSetChanged();
                         }
                     }
@@ -112,5 +122,8 @@ public class AddingMailsActivity extends AppCompatActivity {
 
         });
 
+
     }
+
+
 }
