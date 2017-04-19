@@ -1,27 +1,20 @@
 package com.example.s525721.myapplication;
 
-import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
-import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-import com.parse.Parse;
 import com.parse.ParseException;
-import com.parse.ParseObject;
 import com.parse.ParseUser;
 import com.parse.SignUpCallback;
 
@@ -29,12 +22,14 @@ import com.parse.SignUpCallback;
 public class RegistrationActivity extends AppCompatActivity implements View.OnClickListener{
     EditText name, email, password, confirmPassword, user919;
     Boolean success = true;
+
     ImageButton policy;
     int countUpper = 0;
     int countLower = 0;
     int countDigit = 0;
     int countSpecialChar = 0;
     LinearLayout policyPop;
+    RelativeLayout regRelative;
 
     String toast = "";
     public void toast(String toast){
@@ -43,11 +38,13 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
 
 public void popCancel(View view){
     policyPop.setVisibility(View.INVISIBLE);
+
 }
 
     public static final String SPECIAL_CHARACTERS = "!@#$%^&*()~`-=_+[]{}|:\";',./<>?";
     public static final int MIN_PASSWORD_LENGTH = 8;
     public static final int MAX_PASSWORD_LENGTH = 20;
+
 
     public  boolean isAcceptablePassword(String password) {
         if (password.isEmpty()) {
@@ -85,7 +82,7 @@ public void popCancel(View view){
                 toast(toast);
                 success = false;
             } else {
-                toast("password success");
+              //  toast("password success");
                 success = true;
             }
 
@@ -94,15 +91,29 @@ public void popCancel(View view){
     }
 
 
+    //signIn here
+
+    public void signInHere(View view){
+        Intent signIn = new Intent(RegistrationActivity.this,LoginActivity.class);
+        startActivity(signIn);
+    }
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
-        user919 = (EditText) findViewById(R.id.editText8);
-        name = (EditText) findViewById(R.id.editText2);
-        email = (EditText) findViewById(R.id.editText3);
-        password = (EditText) findViewById(R.id.editText4);
-        confirmPassword = (EditText) findViewById(R.id.editText6);
+        user919 = (EditText) findViewById(R.id.user919ET);
+        name = (EditText) findViewById(R.id.user919ET);
+        email = (EditText) findViewById(R.id.mailET);
+        password = (EditText) findViewById(R.id.passwordEditText);
+        confirmPassword = (EditText) findViewById(R.id.cpassEditText);
+
+
+
+
+
          policyPop = (LinearLayout)findViewById(R.id.popLayout);
         policyPop.setVisibility(View.INVISIBLE);
 policy = (ImageButton)findViewById(R.id.passwordPolicy);
@@ -112,12 +123,13 @@ policy.setOnClickListener(new View.OnClickListener() {
     public void onClick(View view) {
 
         policyPop.setVisibility(View.VISIBLE);
+       // regRelative.setVisibility(View.INVISIBLE);
 
     }
 });
 
 //button
-        Button button3 = (Button) findViewById(R.id.button3);
+        Button button3 = (Button) findViewById(R.id.signUpBTN);
 password.setOnTouchListener(new View.OnTouchListener() {
     @Override
     public boolean onTouch(View view, MotionEvent motionEvent) {
@@ -128,22 +140,22 @@ password.setOnTouchListener(new View.OnTouchListener() {
 });
 
         //reset button
-        Button reset = (Button) findViewById(R.id.buttonR);
-        reset.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-               EditText userId = (EditText) findViewById(R.id.editText8);
-                EditText userName = (EditText) findViewById(R.id.editText2);
-               EditText emailId = (EditText) findViewById(R.id.editText3);
-                EditText pswd = (EditText) findViewById(R.id.editText4);
-                EditText cPassword = (EditText) findViewById(R.id.editText6);
-                userId.setText("");
-                userName.setText("");
-                emailId.setText("");
-                pswd.setText("");
-                cPassword.setText("");
-            }
-        });
+//        Button reset = (Button) findViewById(R.id.buttonR);
+//        reset.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//               EditText userId = (EditText) findViewById(R.id.editText8);
+//                EditText userName = (EditText) findViewById(R.id.user919ET);
+//               EditText emailId = (EditText) findViewById(R.id.mailET);
+//                EditText pswd = (EditText) findViewById(R.id.passwordEditText);
+//                EditText cPassword = (EditText) findViewById(R.id.editText6);
+//                userId.setText("");
+//                userName.setText("");
+//                emailId.setText("");
+//                pswd.setText("");
+//                cPassword.setText("");
+//            }
+//        });
 
 
         button3.setOnClickListener(new View.OnClickListener() {
@@ -162,7 +174,7 @@ password.setOnTouchListener(new View.OnTouchListener() {
 });
 
 
-        RelativeLayout regRelative = (RelativeLayout) findViewById(R.id.activity_registration);
+         regRelative = (RelativeLayout) findViewById(R.id.activity_registration);
         regRelative.setOnClickListener(this);
 
     }
@@ -206,14 +218,14 @@ password.setOnTouchListener(new View.OnTouchListener() {
 
         String user919Pattern = "919[0-9]{6}";
 
-        if (!user919ID
+        if (nameOfUser.isEmpty()) {
+            Toast.makeText(getApplicationContext(), "Please enter valid name", Toast.LENGTH_SHORT).show();
+            success = false;
+        } else if (!user919ID
                 .matches(user919Pattern)) {
             Toast.makeText(getApplicationContext(), "please enter valid 919#", Toast.LENGTH_SHORT).show();
             success = false;
-        }else if (nameOfUser.isEmpty()) {
-            Toast.makeText(getApplicationContext(), "Please enter valid name", Toast.LENGTH_SHORT).show();
-            success = false;
-        } else if (!eMail.matches(emailPattern)) {
+        }else if (!eMail.matches(emailPattern)) {
             Toast.makeText(getApplicationContext(), "Invalid email address", Toast.LENGTH_SHORT).show();
             success = false;
         } else if (pass.isEmpty()) {

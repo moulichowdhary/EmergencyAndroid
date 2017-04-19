@@ -73,18 +73,9 @@ public class ComplaintActivity extends AppCompatActivity {
         //emergencyContacts = (Button) findViewById(R.id.conatactsBTN);
         dropDownComplaintType = (Spinner) findViewById(R.id.complaintTypeSpinner);
 
-        //hosital locations
-        //hospitalSearch = (Button) findViewById(R.id.hospitalSearchBTN);
-
-//hospitalSearch.setOnClickListener(new View.OnClickListener() {
-//    @Override
-//    public void onClick(View view) {
-//        Intent intent = new Intent(ComplaintActivity.this,PlacesActivity.class);
-//        intent.putExtra("Lat",latitude);
-//        intent.putExtra("Lng",longitude);
-//        startActivity(intent);
-//    }
-//});
+        Intent receivingCoOrdinates = getIntent();
+        latitude = receivingCoOrdinates.getDoubleExtra("Lat",0.0);
+        longitude = receivingCoOrdinates.getDoubleExtra("Lng",0.0);
 
 
         RelativeLayout relativeLayout = (RelativeLayout) findViewById(R.id.activity_complaint);

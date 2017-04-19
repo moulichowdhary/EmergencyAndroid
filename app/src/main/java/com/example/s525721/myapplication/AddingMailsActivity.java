@@ -50,29 +50,36 @@ public class AddingMailsActivity extends AppCompatActivity {
         addRecipientBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                emails.add(recipientMail.getText().toString());
                 emailArray.notifyDataSetChanged();
                 //emails.add(recipientMail.getText().toString());
                 ParseObject recipients = new ParseObject("EmailRecipients");
-                recipients.put("Username", ParseUser.getCurrentUser().getUsername());
-                recipients.put("recipientEmail",recipientMail.getText().toString() );
+                String mailString = recipientMail.getText().toString();
+                String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+                if (mailString.matches(emailPattern)) {
+                    recipients.put("Username", ParseUser.getCurrentUser().getUsername());
+                    recipients.put("recipientEmail", mailString);
+                    emails.add(mailString);
 
 
-                //recipients.put("email", recipientMail.getText().toString());
+
+                    //recipients.put("email", recipientMail.getText().toString());
 
 
-                recipients.saveInBackground(new SaveCallback() {
-                    @Override
-                    public void done(ParseException e) {
-                        if (e==null){
-                            //fetchData();
-                            Toast.makeText(AddingMailsActivity.this,"Successfully Added",Toast.LENGTH_SHORT).show();
-                        }else{
-                            Log.i("Error: ",e.getMessage());
-                            Toast.makeText(AddingMailsActivity.this,"Email not added to the list",Toast.LENGTH_SHORT).show();
+                    recipients.saveInBackground(new SaveCallback() {
+                        @Override
+                        public void done(ParseException e) {
+                            if (e == null) {
+                                //fetchData();
+                                Toast.makeText(AddingMailsActivity.this, "Successfully Added", Toast.LENGTH_SHORT).show();
+                            } else {
+                                //Log.i("Error: ", e.getMessage());
+                                Toast.makeText(AddingMailsActivity.this, "Email not added to the list", Toast.LENGTH_SHORT).show();
+                            }
                         }
-                    }
-                });
+                    });
+                }else{
+                    Toast.makeText(AddingMailsActivity.this,"Please enter correct email",Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -88,12 +95,12 @@ public class AddingMailsActivity extends AppCompatActivity {
                 if (e==null) {
 
 
-                    Toast.makeText(AddingMailsActivity.this, "Retrieved", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(AddingMailsActivity.this, "Retrieved", Toast.LENGTH_SHORT).show();
 
                     if (list.size() > 0) {
                         for (ParseObject object : list) {
                             String mail=  object.getString("recipientEmail");
-                            Log.i("Retrivd",mail);
+                           // Log.i("Retrivd",mail);
                             emails.add(mail);
                             emailArray.notifyDataSetChanged();
                         }

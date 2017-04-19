@@ -12,33 +12,33 @@
     tools:context="com.example.s525721.myapplication.AddingMailsActivity">
 
 
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="62dp"
+        android:id="@+id/mailsListView"
+        android:layout_below="@+id/addEmailBTN"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"/>
+
     <Button
         android:text="Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="26dp"
         android:id="@+id/addEmailBTN"
-        android:layout_alignBaseline="@+id/addEmailET"
-        android:layout_alignBottom="@+id/addEmailET"
-        android:layout_alignParentEnd="true"
         android:alpha="0"
 
-        />
-
-    <ListView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/addEmailBTN"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
-        android:id="@+id/mailsListView" />
+        android:layout_alignTop="@+id/addEmailET"
+        android:layout_alignParentEnd="true" />
 
     <EditText
         android:hint="Enter recipient's mail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="184dp"
+        android:layout_marginStart="34dp"
+        android:layout_marginTop="248dp"
         android:id="@+id/addEmailET"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true" />

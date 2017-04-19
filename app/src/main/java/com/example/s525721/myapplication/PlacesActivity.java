@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -86,6 +87,11 @@ public class PlacesActivity extends ListActivity {
             dialog.setMessage("Loading..");
             dialog.isIndeterminate();
             dialog.show();
+//list view header
+            TextView textView = new TextView(PlacesActivity.this);
+            textView.setText("Hospitals in radius of 3 miles");
+            textView.setTextSize(30);
+            listView.addHeaderView(textView);
         }
 
         @Override

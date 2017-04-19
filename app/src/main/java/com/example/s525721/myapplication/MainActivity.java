@@ -230,12 +230,12 @@ Button fineMsgBTN,emergencyContactsBTN,hospitalSearchBTN,settingsBTN;
                 if (e==null) {
 
 
-                    Toast.makeText(MainActivity.this, "Retrieved", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(MainActivity.this, "Retrieved", Toast.LENGTH_SHORT).show();
 
                     if (list.size() > 0) {
                         for (ParseObject object : list) {
                             String mail=  object.getString("recipientEmail");
-                            Log.i("RetrivdMainActivity",mail);
+                            //Log.i("RetrivdMainActivity",mail);
                             Emails.add(mail);
                             //emailArray.notifyDataSetChanged();
                         }
@@ -253,8 +253,10 @@ Button fineMsgBTN,emergencyContactsBTN,hospitalSearchBTN,settingsBTN;
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.complaintIBTN:
-                Log.d("complaint", "major activity");
+
                 Intent i = new Intent(this, ComplaintActivity.class);
+                i.putExtra("Lat",latitude);
+                i.putExtra("Lng",longitude);
                 startActivity(i);
                 break;
 
@@ -315,13 +317,13 @@ Button fineMsgBTN,emergencyContactsBTN,hospitalSearchBTN,settingsBTN;
                     }
                 }
                 strAdd = strReturnedAddress.toString();
-                Log.w("MyCurrentlocationaddr", "" + strReturnedAddress.toString());
+                //Log.w("MyCurrentlocationaddr", "" + strReturnedAddress.toString());
             } else {
                 Log.w("MyCurrentlocationaddr", "No Address returned!");
             }
         } catch (Exception e) {
             e.printStackTrace();
-            Log.w("MyCurrentlocationaddr", "Cannon get Address!");
+            Log.w("MyCurrentlocationaddr", "Cannot get Address!");
         }
 
 
@@ -340,11 +342,11 @@ Button fineMsgBTN,emergencyContactsBTN,hospitalSearchBTN,settingsBTN;
 
         String user919 = ParseUser.getCurrentUser().getUsername();
 
-        SendMail sm = new SendMail(this, "makkenasrinivasarao1@gmail.com", user919+ "\n" + sub, sub + "\n" + body);
+        SendMail sm = new SendMail(this, "makkenasrinivasarao1@gmail.com", user919, sub + "\n" + body);
         sm.execute();
         for(String mail:Emails){
             Log.i("Mail",mail);
-            SendMail sm1 = new SendMail(this, mail, user919+ "\n" + sub, sub + "\n" + body);
+            SendMail sm1 = new SendMail(this, mail, user919, sub + "\n" + body);
             sm1.execute();
         }
 

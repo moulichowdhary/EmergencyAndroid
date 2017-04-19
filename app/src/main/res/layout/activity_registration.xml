@@ -8,145 +8,104 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="100dp"
-    android:background="@mipmap/regbg"
+    android:background="@mipmap/signupnew"
 
     tools:context="com.example.s525721.myapplication.LoginActivity"
     >
 
 
-    <TextView
-        android:text="Registration"
+    <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/textView4"
-        android:textSize="34sp"
-        android:layout_marginTop="30dp"
-        android:layout_centerHorizontal="true"
-        android:textColor="@android:color/holo_green_dark" />
+        android:inputType="textPersonName"
+
+        android:ems="10"
+        android:layout_below="@+id/nameET"
+        android:layout_alignStart="@+id/nameET"
+        android:layout_marginTop="24dp"
+        android:id="@+id/user919ET" />
 
     <EditText
-        android:drawableLeft="@mipmap/user"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
 
-        android:background="#ffffff"
-        android:textColor="#000000"
-        android:id="@+id/editText8"
-        android:hint="919######"
-
-
-        android:layout_below="@+id/textView4"
-        android:layout_centerHorizontal="true" />
-
-    <EditText
-        android:drawableLeft="@mipmap/user"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-
-        android:background="#ffffff"
-        android:textColor="#000000"
-        android:id="@+id/editText2"
-        android:hint="Last name, First Name"
-        android:layout_below="@id/editText8"
-        android:layout_centerVertical="true"
+        android:ems="10"
+        android:layout_marginStart="38dp"
+        android:layout_marginTop="134dp"
+        android:id="@+id/nameET"
+        android:layout_alignParentTop="true"
         android:layout_alignParentStart="true" />
 
     <EditText
-        android:drawableLeft="@mipmap/user"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:id="@+id/editText3"
-        android:textColor="#000000"
-        android:background="#ffffff"
-        android:layout_below="@+id/editText2"
-        android:layout_alignParentStart="true"
-        android:hint="abc@mail.com" />
-
-    <EditText
-        android:drawableLeft="@mipmap/password"
-
-        android:inputType="textPassword"
-        android:ems="10"
-        android:id="@+id/editText4"
-        android:hint=" password"
-        android:textColor="#000000"
-        android:background="#ffffff"
-        android:paddingRight="40dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/editText3"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:layout_marginTop="27dp"
+        android:id="@+id/passwordEditText"
+        android:layout_below="@+id/mailET"
+        android:layout_alignStart="@+id/mailET" />
 
-        android:layout_marginBottom="11dp"
-        android:paddingLeft="4dp"
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+
+        android:ems="10"
+        android:layout_marginTop="27dp"
+        android:id="@+id/mailET"
+        android:layout_below="@+id/user919ET"
+        android:layout_alignStart="@+id/user919ET" />
+
+    <Button
+        android:text="Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/signUpBTN"
+        android:layout_below="@+id/cpassEditText"
+        android:layout_alignEnd="@+id/cpassEditText"
+        android:alpha="0"
+        />
+
+    <Button
+        android:text="Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/signUpBTN"
+        android:layout_alignStart="@+id/signUpBTN"
+        android:layout_marginStart="56dp"
+        android:layout_marginTop="9dp"
+        android:id="@+id/signInHere"
+        android:onClick="signInHere"
+        android:alpha="0"
         />
 
     <EditText
-        android:drawableLeft="@mipmap/password"
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPassword"
         android:ems="10"
-        android:textColor="#000000"
-        android:id="@+id/editText6"
-        android:hint=" confirm password"
-        android:background="#ffffff"
-        android:layout_below="@+id/editText4"
-        android:layout_alignStart="@+id/editText4"
-        android:layout_marginBottom="12dp"
-        android:layout_alignParentEnd="true"
-        android:paddingLeft="4dp"
-        />
-
-
-
-
-    <Button
-        android:text="RESET"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-
-        android:id="@+id/buttonR"
-        tools:text="RESET"
-        android:background="@drawable/circle_side"
-        android:textColor="#ea0e3a"
-
-        android:layout_toRightOf="@+id/button3"
-        android:layout_below="@+id/editText6"
-
-        android:layout_marginLeft="10dp" />
-
-    <Button
-        android:text="Submit"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-
-        android:id="@+id/button3"
-        tools:text="Submit"
-        android:background="@drawable/circle_side"
-        android:textColor="#ff2344"
-        android:layout_gravity="center_horizontal"
-        android:layout_below="@+id/editText6"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="15dp" />
+        android:layout_marginTop="19dp"
+        android:id="@+id/cpassEditText"
+        android:layout_below="@+id/passwordEditText"
+        android:layout_alignStart="@+id/passwordEditText" />
 
     <ImageButton android:id="@+id/passwordPolicy"
-        android:text="Policy"
+
 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@mipmap/passpolicy2"
-        android:layout_alignBottom="@+id/editText4"
-        android:layout_toEndOf="@+id/editText4" />
+        android:layout_alignTop="@+id/passwordEditText"
+        android:layout_alignParentEnd="true"
+        android:layout_toEndOf="@+id/signInHere" />
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/editText4"
+        android:layout_alignBottom="@+id/passwordEditText"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="15dp"
         android:padding="15dp"
@@ -159,7 +118,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/textView2"
             android:textColor="@color/colorAccent"
-            android:textSize="18sp" />
+            android:textSize="25sp" />
 
         <TextView
             android:text="1. Min characters: 8"
@@ -191,11 +150,12 @@
 
         <Button
             android:text="OK"
+            android:textColor="#fff"
+            android:textSize="30sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/popCancelBTN"
             android:onClick="popCancel"
-            android:background="@color/colorAccent" />
+            android:background="#0ff50b" />
     </LinearLayout>
-
 </RelativeLayout>

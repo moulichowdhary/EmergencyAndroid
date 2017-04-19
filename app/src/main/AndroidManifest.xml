@@ -37,11 +37,13 @@
         </activity>
         <activity
             android:name=".ComplaintActivity"
-            android:windowSoftInputMode="stateHidden" />
+
+            android:windowSoftInputMode="adjustPan"
+            />
         <activity android:name=".PhoneNumber" />
         <activity android:name=".ForgotPasswordActivity" />
         <activity android:name=".PlacesActivity" />
-        <!--
+        <!--android:windowSoftInputMode="stateHidden"
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
              Note that the API key is linked to the encryption key used to sign the APK.

@@ -86,15 +86,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
 
             //log in button
-            button4 = (Button) findViewById(R.id.button4);
+            button4 = (Button) findViewById(R.id.signIn);
 
 
             button4.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View view) {
 
 
-                    userID = (EditText) findViewById(R.id.editText);
-                    Password = (EditText) findViewById(R.id.editText7);
+                    userID = (EditText) findViewById(R.id.userET);
+                    Password = (EditText) findViewById(R.id.passwordET);
 
                     final String user919ID = userID.getText().toString();
 
@@ -104,7 +104,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
 
                     if (user919ID.isEmpty()) {
-                        Toast.makeText(getApplicationContext(), "Invalid id ", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Please enter valid 919 ID ", Toast.LENGTH_SHORT).show();
 //                    success = false;
                     } else if (password.isEmpty()) {
                         Toast.makeText(getApplicationContext(), "Please enter password", Toast.LENGTH_SHORT).show();
@@ -146,8 +146,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View view) {
 
-        TextView login = (TextView) findViewById(R.id.loginLBL);
-            if (view.getId() == R.id.activity_login || view.getId() == R.id.register || view.getId() == R.id.loginLBL){
+        //TextView login = (TextView) findViewById(R.id.loginLBL);
+            if (view.getId() == R.id.activity_login || view.getId() == R.id.register ){
                 InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
                 inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),0);
             }
