@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_registration"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="100dp"
+    android:background="@mipmap/signupnew"
+
+    tools:context="com.example.s525721.myapplication.LoginActivity"
+    >
+
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+
+        android:ems="10"
+        android:layout_marginTop="46dp"
+        android:id="@+id/user919ET"
+        android:background="@android:color/transparent"
+
+        android:layout_below="@+id/nameET"
+        android:layout_alignStart="@+id/nameET" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+
+        android:ems="10"
+        android:layout_marginTop="56dp"
+        android:id="@+id/mailET"
+        android:background="@android:color/transparent"
+
+        android:layout_below="@+id/user919ET"
+        android:layout_alignStart="@+id/user919ET" />
+
+    <Button
+        android:text="Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/signUpBTN"
+        android:alpha="0"
+        android:layout_below="@+id/cpassEditText"
+        android:layout_alignEnd="@+id/cpassEditText"
+        android:layout_marginTop="10dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+
+        android:ems="10"
+        android:layout_marginStart="38dp"
+        android:layout_marginTop="140dp"
+        android:id="@+id/nameET"
+        android:background="@android:color/transparent"
+
+
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:text="Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="56dp"
+        android:id="@+id/signInHere"
+        android:onClick="signInHere"
+        android:alpha="0"
+
+
+        android:layout_below="@+id/signUpBTN"
+        android:layout_alignStart="@+id/signUpBTN" />
+
+    <ImageButton android:id="@+id/passwordPolicy"
+
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@mipmap/info"
+        android:layout_marginRight="30dp"
+        android:layout_below="@+id/mailET"
+        android:layout_toEndOf="@+id/signInHere"
+        android:layout_marginStart="20dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:layout_marginTop="43dp"
+        android:id="@+id/cpassEditText"
+        android:background="@android:color/transparent"
+
+        android:layout_below="@+id/passwordEditText"
+        android:layout_alignStart="@+id/passwordEditText" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/passwordEditText"
+        android:background="@android:color/transparent"
+
+        android:layout_marginStart="6dp"
+        android:layout_below="@+id/passwordPolicy"
+        android:layout_alignStart="@+id/mailET"
+        android:layout_marginTop="21dp" />
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/passwordEditText"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="15dp"
+        android:padding="15dp"
+        android:id="@+id/popLayout"
+        android:background="@android:color/background_light">
+
+        <TextView
+            android:text="Password Policy:"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView2"
+            android:textColor="@color/colorAccent"
+            android:textSize="25sp" />
+
+        <TextView
+            android:text="1. Min characters: 8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView3"
+            android:textColor="@android:color/black" />
+
+        <TextView
+            android:text="2. Max characters: 20"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView6"
+            android:textColor="@android:color/black" />
+
+        <TextView
+            android:text="3. Atleast 1 capital, 1 number, 1 special character"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView7"
+            android:textColor="@android:color/black" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView8"
+            android:text="4. Min 1 small character"
+            android:textColor="@android:color/black" />
+
+        <Button
+            android:text="OK"
+            android:textColor="#fff"
+            android:textSize="30sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/popCancelBTN"
+            android:onClick="popCancel"
+            android:background="#1d5013" />
+    </LinearLayout>
+
+</RelativeLayout>

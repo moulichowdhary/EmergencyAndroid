@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:weightSum="1"
+    android:background="@mipmap/mainbg"
+
+
+    >
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/round_complaint"
+        android:id="@+id/hospitalFindBTN"
+        android:alpha="0"
+
+
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="40dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/round_complaint"
+        android:id="@+id/emergencyContactsBTN"
+        android:alpha="0"
+        android:layout_alignBaseline="@+id/hospitalFindBTN"
+        android:layout_alignBottom="@+id/hospitalFindBTN"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/round_complaint"
+        android:id="@+id/complaintIBTN"
+        android:alpha="0"
+        android:layout_alignBaseline="@+id/hospitalFindBTN"
+        android:layout_alignBottom="@+id/hospitalFindBTN"
+        android:layout_toStartOf="@+id/hospitalFindBTN" />
+
+    <Button
+        android:text="Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="116dp"
+        android:id="@+id/settingsBTN"
+        android:alpha="0"
+        android:background="@drawable/round_small_new"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/round_button"
+        android:id="@+id/emergencyIBTN"
+        android:alpha="0"
+        android:layout_marginTop="39dp"
+        android:layout_alignTop="@+id/settingsBTN"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/round_complaint"
+        android:id="@+id/iamfineBTN"
+        android:alpha="0"
+        android:layout_marginBottom="47dp"
+        android:layout_above="@+id/hospitalFindBTN"
+        android:layout_alignParentEnd="true" />
+
+</RelativeLayout>
